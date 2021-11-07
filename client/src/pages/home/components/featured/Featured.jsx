@@ -8,14 +8,14 @@ const Featured = (props) => {
     const { type } = props;
 
     return (
-        <div className="featured">
+        <div className='featured'>
             {type && (
-                <div className="category">
+                <div className='category'>
                     <span>
-                        {type === 'movie' ? 'Movies' : 'Series'}
+                        {type === 'movies' ? 'Movies' : 'Series'}
                     </span>
 
-                    <select className="select" name="genre" id="genre">
+                    <select className='select' name='genre' id='genre'>
                         <option>Genre</option>
                         <option value="adventure">Adventure</option>
                         <option value="comedy">Comedy</option>
@@ -35,26 +35,26 @@ const Featured = (props) => {
             )}
 
             <img
-                src="https://images.pexels.com/photos/6899260/pexels-photo-6899260.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-                alt=""
+                src='https://images.pexels.com/photos/6899260/pexels-photo-6899260.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500'
+                alt=''
             />
 
-            <div className="info">
-                <Typography variant="h1">Title</Typography>
+            <div className='info'>
+                <Typography variant='h1'>Title</Typography>
 
-                <span className="desc">
+                <span className='desc'>
                     Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum voluptatum et a laudantium unde?
                     Tempora, quisquam doloribus.
                     Repudiandae totam debitis pariatur natus. Animi libero, nihil modi quod tempore labore accusantium.
                 </span>
 
-                <div className="buttons">
-                    <button className="play">
+                <div className='buttons'>
+                    <button className='play'>
                         <PlayArrow />
                         <span>Play</span>
                     </button>
-                    
-                    <button className="more">
+
+                    <button className='more'>
                         <InfoOutlined />
                         <span>Info</span>
                     </button>

@@ -2,61 +2,67 @@ import Add from '@material-ui/icons/Add';
 import PlayArrow from '@material-ui/icons/PlayArrow';
 import ThumbDownOutlined from '@material-ui/icons/ThumbDownOutlined';
 import ThumbUpAltOutlined from '@material-ui/icons/ThumbUpAltOutlined';
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { apiUrl } from '../../../../constants/constant';
 import './listItem.scss';
 
-const ListItem = () => {
+const ListItem = (props) => {
+    const { index, movieId } = props;
     const [isHovered, setIsHovered] = useState(false);
+    const [movie, setMovie] = useState({});
+
+    useEffect(() => {
+        const getMovie = async () => {
+            try {
+                const response = await axios.get(
+                    `${apiUrl}/movies/find/${movieId}`, {
+                    headers: {
+                        token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxODM1ZWM3NjJlYzQyNWVjMDUwMzdlZSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzNjI3Njc2OSwiZXhwIjoxNjM2NzA4NzY5fQ.lMy7Bg6YcJP6h_9ff_OWhcV-MHYA4iLlj8ux04lJ1mc"
+                    }
+                }
+                );
+                setMovie(response.data);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        getMovie();
+    }, [movieId]);
 
     return (
         <div
-            className="listItem"
+            className='listItem'
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
             <img
-                src="https://afamilycdn.com/150157425591193600/2020/10/6/du-lich-quoc-hoc-hue-7-16019624869481270067688.jpg"
-                alt=""
+                src={movie.img}
+                alt='movie-image'
             />
 
             {isHovered && (
                 <React.Fragment>
-                    {/* <ReactPlayer
-                        style={{
-                            width: '100%',
-                            height: 150,
-                            objectFit: 'cover',
-                            position: 'absolute',
-                            top: 0,
-                            left: 0
-                        }}
-                        //height={150}
-                        playing
-                        url='https://youtu.be/aUZ-u-V99cw?t=1'
-                    /> */}
-
-                    <div className="itemInfo">
-                        <div className="icons">
-                            <PlayArrow className="icon" />
-                            <Add className="icon" />
-                            <ThumbUpAltOutlined className="icon" />
-                            <ThumbDownOutlined className="icon" />
+                    <div className='itemInfo'>
+                        <div className='icons'>
+                            <PlayArrow className='icon' />
+                            <Add className='icon' />
+                            <ThumbUpAltOutlined className='icon' />
+                            <ThumbDownOutlined className='icon' />
                         </div>
 
-                        <div className="itemInfoTop">
-                            <span>1 hour 27 mins</span>
-                            <span className="limit">18+</span>
-                            <span>1999</span>
+                        <div className='itemInfoTop'>
+                            <span>{movie.duration}</span>
+                            <span className='limit'>+{movie.limit}</span>
+                            <span>{movie.year}</span>
                         </div>
 
-                        <div className="desc">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Itaque repellendus, possimus, magnam, natus obcaecati repudiandae nesciunt velit commodi nam at
-                            totam rerum soluta omnis temporibus debitis ea cum atque veniam.
+                        <div className='desc'>
+                            {movie.desc}
                         </div>
 
-                        <div className="genre">
-                            Action
+                        <div className='genre'>
+                            {movie.genre}
                         </div>
                     </div>
                 </React.Fragment>

@@ -5,8 +5,8 @@ import './watch.scss';
 
 const Watch = () => {
     return (
-        <div className="watch">
-            <div className="back">
+        <div className='watch'>
+            <div className='back'>
                 <ArrowBackOutlined />
                 Home
             </div>
