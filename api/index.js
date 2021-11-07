@@ -3,6 +3,8 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import authRoute from './routes/auth.js';
 import userRoute from './routes/users.js';
+import movieRoute from './routes/movies.js';
+import listRoute from './routes/lists.js';
 
 const app = express();
 
@@ -20,6 +22,8 @@ app.use(express.json());
 
 app.use('/api/auth', authRoute);
 app.use('/api/users', userRoute);
+app.use('/api/movies', movieRoute);
+app.use('/api/lists', listRoute);
 
 app.listen(8000, () => {
     console.log('Backend server is running');

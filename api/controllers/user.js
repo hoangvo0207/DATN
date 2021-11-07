@@ -53,12 +53,38 @@ export const getUsers = async (req, res) => {
     const query = req.query.new;
     if (req.user.isAdmin) {
         try {
-            const users = query ? await User.find().limit(10) : await User.find();
+            const users = query
+                ? await User.find().sort({ _id: -1 }).limit(10)
+                : await User.find();
             res.status(200).json(users);
         } catch (error) {
             res.status(500).json(error);
         }
     } else {
         res.status(403).json('You are not allowed to see all users');
+    }
+};
+
+export const getUserStats = async (req, res) => {
+    const today = new Date();
+    const latYear = today.setFullYear(today.setFullYear() - 1);
+
+    try {
+        const data = await User.aggregate([
+            {
+                $project: {
+                    month: { $month: "$createdAt" },
+                },
+            },
+            {
+                $group: {
+                    _id: "$month",
+                    total: { $sum: 1 },
+                },
+            },
+        ]);
+        res.status(200).json(data);
+    } catch (error) {
+        res.status(500).json(error);
     }
 };
