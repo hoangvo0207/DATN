@@ -1,17 +1,24 @@
 import ArrowBackOutlined from '@material-ui/icons/ArrowBackOutlined';
 import React from 'react';
 import ReactPlayer from 'react-player';
+import { Link, useLocation } from 'react-router-dom';
 import './watch.scss';
 
 const Watch = () => {
+    const location = useLocation();
+    const { movie } = location || {};
+    console.log({ location })
+
     return (
         <div className='watch'>
-            <div className='back'>
-                <ArrowBackOutlined />
-                Home
-            </div>
+            <Link className='link' to='/'>
+                <div className='back'>
+                    <ArrowBackOutlined />
+                    Home
+                </div>
+            </Link>
 
-            <ReactPlayer width='100%' height='100%' playing controls url='https://youtu.be/aUZ-u-V99cw?t=1' />
+            <ReactPlayer width='100%' height='100%' playing controls url={movie.video} />
         </div>
     );
 };
