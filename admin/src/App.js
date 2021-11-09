@@ -9,14 +9,18 @@ import NewUser from "./pages/newUser/NewUser";
 import ProductList from "./pages/productList/ProductList";
 import Product from "./pages/product/Product";
 import NewProduct from "./pages/newProduct/NewProduct";
+import Login from "./pages/login/Login";
 
-function App() {
+const App = () => {
   return (
     <Router>
-      <Topbar />
-      <div className="container">
-        <Sidebar />
-        <Switch>
+      <Switch>
+        <Route path="/login">
+          <Login />
+        </Route>
+        <Topbar />
+        <div className="container">
+          <Sidebar />
           <Route exact path="/">
             <Home />
           </Route>
@@ -29,7 +33,7 @@ function App() {
           <Route path="/newUser">
             <NewUser />
           </Route>
-          <Route path="/products">
+          <Route path="/movies">
             <ProductList />
           </Route>
           <Route path="/product/:productId">
@@ -38,8 +42,8 @@ function App() {
           <Route path="/newproduct">
             <NewProduct />
           </Route>
-        </Switch>
-      </div>
+        </div>
+      </Switch>
     </Router>
   );
 }
