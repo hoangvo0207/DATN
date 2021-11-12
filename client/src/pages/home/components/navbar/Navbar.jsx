@@ -1,12 +1,15 @@
 import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
 import Notifications from '@material-ui/icons/Notifications';
 import Search from '@material-ui/icons/Search';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { logoutRequest } from '../../../../authContext/AuthAction';
+import { AuthContext } from '../../../../authContext/AuthContext';
 import './navbar.scss';
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
+    const { dispatch } = useContext(AuthContext);
 
     window.onscroll = () => {
         setIsScrolled(window.pageYOffset === 0 ? false : true);
@@ -49,7 +52,7 @@ const Navbar = () => {
                         <ArrowDropDown className='icon' />
                         <div className='options'>
                             <span>Settings</span>
-                            <span>Logout</span>
+                            <span onClick={() => dispatch(logoutRequest())}>Logout</span>
                         </div>
                     </div>
                 </div>

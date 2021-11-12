@@ -17,7 +17,7 @@ const Home = (props) => {
                 const response = await axios.get(
                     `${apiUrl}/lists${type ? '?type=' + type : ''}${genre ? '&genre=' + genre : ''}`, {
                     headers: {
-                        token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxODM1ZWM3NjJlYzQyNWVjMDUwMzdlZSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzNjI3Njc2OSwiZXhwIjoxNjM2NzA4NzY5fQ.lMy7Bg6YcJP6h_9ff_OWhcV-MHYA4iLlj8ux04lJ1mc"
+                        token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken
                     }
                 }
                 );
@@ -32,7 +32,7 @@ const Home = (props) => {
     return (
         <div className='home'>
             <Navbar />
-            <Featured type={type} />
+            <Featured type={type} setGenre={setGenre} />
             {
                 lists.map((list) => (
                     <List list={list} />
