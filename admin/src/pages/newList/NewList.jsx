@@ -1,12 +1,12 @@
-import { useContext, useEffect, useState } from "react";
-import { createList } from "../../contexts/listContext/apiCall";
-import { ListContext } from "../../contexts/listContext/ListContext";
-import { createMovie, getMovies } from "../../contexts/movieContext/apiCall";
-import { MovieContext } from "../../contexts/movieContext/MovieContext";
-import "./newList.css";
-import {useHistory} from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { createList } from '../../contexts/listContext/apiCall';
+import { ListContext } from '../../contexts/listContext/ListContext';
+import { getMovies } from '../../contexts/movieContext/apiCall';
+import { MovieContext } from '../../contexts/movieContext/MovieContext';
+import './newList.css';
 
-export default function NewList() {
+const NewList = () => {
     const [list, setList] = useState(null);
     const history = useHistory();
 
@@ -34,34 +34,40 @@ export default function NewList() {
     }
 
     return (
-        <div className="newProduct">
-            <h1 className="addProductTitle">New Movie</h1>
-            <form className="addProductForm">
-                <div className="addProductItem">
+        <div className='newList'>
+            <h1 className='addListTitle'>New Movie</h1>
+            <form className='addListForm'>
+                <div className='addListItem'>
                     <label>Title</label>
-                    <input type="text" placeholder="John Wick" name="title" onChange={handleChange} />
+                    <input type='text' placeholder='John Wick' name='title' onChange={handleChange} />
                 </div>
-                <div className="addProductItem">
+
+                <div className='addListItem'>
                     <label>Genre</label>
-                    <input type="text" placeholder="Genre" name="genre" />
+                    <input type='text' placeholder='Genre' name='genre' />
                 </div>
-                <div className="addProductItem">
+
+                <div className='addListItem'>
                     <label>Type</label>
-                    <select name="type" id="type" onChange={handleChange}>
-                        <option value="movie">Movie</option>
-                        <option value="series">Series</option>
+                    <select name='type' id='type' onChange={handleChange}>
+                        <option value='movie'>Movie</option>
+                        <option value='series'>Series</option>
                     </select>
                 </div>
-                <div className="addProductItem">
+
+                <div className='addListItem'>
                     <label>Content</label>
-                    <select multiple name="content" id="type" onChange={handleSelect}>
+                    <select multiple name='content' id='type' onChange={handleSelect}>
                         {movies.map((movie) => (
                             <option key={movie._id} value={movie._id}>{movie.title}</option>
                         ))}
                     </select>
                 </div>
-                <button className="addProductButton" onClick={handleSubmit}>Create</button>
+
+                <button className='addListButton' onClick={handleSubmit}>Create</button>
             </form>
         </div>
     );
-}
+};
+
+export default NewList;

@@ -1,12 +1,12 @@
-import { DataGrid } from "@material-ui/data-grid";
-import { DeleteOutline } from "@material-ui/icons";
-import { useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { deleteList, getLists } from "../../contexts/listContext/apiCall";
-import { ListContext } from "../../contexts/listContext/ListContext";
-import "./list.css";
+import { DataGrid } from '@material-ui/data-grid';
+import { DeleteOutline } from '@material-ui/icons';
+import { useContext, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { deleteList, getLists } from '../../contexts/listContext/apiCall';
+import { ListContext } from '../../contexts/listContext/ListContext';
+import './list.css';
 
-export default function List() {
+const List = () => {
   const { lists, dispatch } = useContext(ListContext);
 
   useEffect(() => {
@@ -18,22 +18,22 @@ export default function List() {
   };
 
   const columns = [
-    { field: "_id", headerName: "ID", width: 90 },
-    { field: "title", headerName: "Title", width: 120 },
-    { field: "genre", headerName: "Genre", width: 120 },
-    { field: "type", headerName: "Type", width: 120 },
+    { field: '_id', headerName: 'ID', width: 90 },
+    { field: 'title', headerName: 'Title', width: 120 },
+    { field: 'genre', headerName: 'Genre', width: 120 },
+    { field: 'type', headerName: 'Type', width: 120 },
     {
-      field: "action",
-      headerName: "Action",
+      field: 'action',
+      headerName: 'Action',
       width: 150,
       renderCell: (params) => {
         return (
           <>
-            <Link to={{ pathname: "/lists/" + params.row._id, listItem: params.row }}>
-              <button className="productListEdit">Edit</button>
+            <Link to={{ pathname: '/lists/' + params.row._id, listItem: params.row }}>
+              <button className='listEdit'>Edit</button>
             </Link>
             <DeleteOutline
-              className="productListDelete"
+              className='listDelete'
               onClick={() => handleDelete(params.row._id)}
             />
           </>
@@ -43,7 +43,7 @@ export default function List() {
   ];
 
   return (
-    <div className="productList">
+    <div className='list'>
       <DataGrid
         rows={lists}
         disableSelectionOnClick
@@ -54,4 +54,6 @@ export default function List() {
       />
     </div>
   );
-}
+};
+
+export default List;

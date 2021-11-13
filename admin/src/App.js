@@ -1,20 +1,20 @@
-import React, { useContext } from "react";
-import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
-import "./app.css";
-import Sidebar from "./components/sidebar/Sidebar";
-import Topbar from "./components/topbar/Topbar";
-import { AuthContext } from "./contexts/authContext/AuthContext";
-import Home from "./pages/home/Home";
-import List from "./pages/list/List";
-import ListItem from "./pages/listItem/ListItem";
-import Login from "./pages/login/Login";
-import NewList from "./pages/newList/NewList";
-import NewProduct from "./pages/newProduct/NewProduct";
-import NewUser from "./pages/newUser/NewUser";
-import Product from "./pages/product/Product";
-import ProductList from "./pages/productList/ProductList";
-import User from "./pages/user/User";
-import UserList from "./pages/userList/UserList";
+import React, { useContext } from 'react';
+import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
+import './app.css';
+import Sidebar from './components/sidebar/Sidebar';
+import Topbar from './components/topbar/Topbar';
+import { AuthContext } from './contexts/authContext/AuthContext';
+import Home from './pages/home/Home';
+import List from './pages/list/List';
+import ListItem from './pages/listItem/ListItem';
+import Login from './pages/login/Login';
+import Movie from './pages/movie/Movie';
+import MovieList from './pages/movieList/MovieList';
+import NewList from './pages/newList/NewList';
+import NewMovie from './pages/newMovie/NewMovie';
+import NewUser from './pages/newUser/NewUser';
+import User from './pages/user/User';
+import UserList from './pages/userList/UserList';
 
 const App = () => {
   const { user } = useContext(AuthContext);
@@ -22,42 +22,42 @@ const App = () => {
   return (
     <Router>
       <Switch>
-        <Route exact path="/login">
+        <Route exact path='/login'>
           {user ? <Redirect to='/' /> : <Login />}
         </Route>
         {user && (
           <React.Fragment>
             <Topbar />
-            <div className="container">
+            <div className='container'>
               <Sidebar />
-              <Route exact path="/">
+              <Route exact path='/'>
                 <Home />
               </Route>
-              <Route path="/users">
+              <Route path='/users'>
                 <UserList />
               </Route>
-              <Route path="/user/:userId">
+              <Route path='/users/:userId'>
                 <User />
               </Route>
-              <Route path="/newUser">
+              <Route path='/newUser'>
                 <NewUser />
               </Route>
-              <Route path="/movies">
-                <ProductList />
+              <Route path='/movies'>
+                <MovieList />
               </Route>
-              <Route path="/product/:productId">
-                <Product />
+              <Route path='/movies/:movieId'>
+                <Movie />
               </Route>
-              <Route path="/newproduct">
-                <NewProduct />
+              <Route path='/newMovie'>
+                <NewMovie />
               </Route>
-              <Route path="/lists">
+              <Route path='/lists'>
                 <List />
               </Route>
-              <Route path="/lists/:listId">
+              <Route path='/lists/:listId'>
                 <ListItem />
               </Route>
-              <Route path="/newList">
+              <Route path='/newList'>
                 <NewList />
               </Route>
             </div>

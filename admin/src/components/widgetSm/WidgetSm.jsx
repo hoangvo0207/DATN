@@ -1,9 +1,10 @@
-import "./widgetSm.css";
-import { Visibility } from "@material-ui/icons";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { apiUrl } from "../../constants/constant";
+import './widgetSm.css';
+import { Visibility } from '@material-ui/icons';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { apiUrl } from '../../constants/constant';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import { Link } from 'react-router-dom';
 
 const WidgetSm = () => {
   const [newUsers, setNewUsers] = useState([]);
@@ -14,7 +15,7 @@ const WidgetSm = () => {
         const response = await axios.get(
           `${apiUrl}/users?new=true`, {
           headers: {
-            token: "Bearer "+JSON.parse(localStorage.getItem("user")).accessToken
+            token: 'Bearer ' + JSON.parse(localStorage.getItem('user')).accessToken
           }
         }
         );
@@ -27,21 +28,22 @@ const WidgetSm = () => {
   }, []);
 
   return (
-    <div className="widgetSm">
-      <span className="widgetSmTitle">New Join Members</span>
-      <ul className="widgetSmList">
+    <div className='widgetSm'>
+      <span className='widgetSmTitle'>New Join Members</span>
+      <ul className='widgetSmList'>
         {newUsers.map((newUser) => (
-          <li className="widgetSmListItem">
+          <li className='widgetSmListItem'>
             <img
               src={newUser.profilePic || <AccountCircleIcon />}
-              alt="avatar"
-              className="widgetSmImg"
+              alt='avatar'
+              className='widgetSmImg'
             />
-            <div className="widgetSmUser">
-              <span className="widgetSmUsername">{newUser.username}</span>
+            <div className='widgetSmUser'>
+              <span className='widgetSmUsername'>{newUser.username}</span>
             </div>
-            <button className="widgetSmButton">
-              <Visibility className="widgetSmIcon" />
+
+            <button className='widgetSmButton'>
+              <Visibility className='widgetSmIcon' />
               Display
             </button>
           </li>

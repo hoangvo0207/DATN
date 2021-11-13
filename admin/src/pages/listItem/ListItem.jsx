@@ -1,54 +1,58 @@
-import { Publish } from "@material-ui/icons";
-import { Link, useLocation } from "react-router-dom";
-import "./listItem.css";
+import { Link, useLocation } from 'react-router-dom';
+import './listItem.css';
 
-export default function ListItem() {
+const ListItem = () => {
     const location = useLocation()
     const listItem = location.listItem;
+    
     return (
-        <div className="product">
-            <div className="productTitleContainer">
-                <h1 className="productTitle">List</h1>
-                <Link to="/newList">
-                    <button className="productAddButton">Create</button>
+        <div className='listItem'>
+            <div className='listTitleContainer'>
+                <h1 className='listTitle'>List</h1>
+                <Link to='/newList'>
+                    <button className='listAddButton'>Create</button>
                 </Link>
             </div>
-            <div className="productTop">
-                <div className="productTopRight">
-                    <div className="productInfoTop">
-                        <span className="productName">{listItem.title}</span>
+
+            <div className='listTop'>
+                <div className='listTopRight'>
+                    <div className='listInfoTop'>
+                        <span className='listName'>{listItem.title}</span>
                     </div>
-                    <div className="productInfoBottom">
-                        <div className="productInfoItem">
-                            <span className="productInfoKey">Id:</span>
-                            <span className="productInfoValue">{listItem._id}</span>
+                    <div className='listInfoBottom'>
+                        <div className='listInfoItem'>
+                            <span className='listInfoKey'>Id:</span>
+                            <span className='listInfoValue'>{listItem._id}</span>
                         </div>
-                        <div className="productInfoItem">
-                            <span className="productInfoKey">Genre:</span>
-                            <span className="productInfoValue">{listItem.genre}</span>
+                        <div className='listInfoItem'>
+                            <span className='listInfoKey'>Genre:</span>
+                            <span className='listInfoValue'>{listItem.genre}</span>
                         </div>
-                        <div className="productInfoItem">
-                            <span className="productInfoKey">Type:</span>
-                            <span className="productInfoValue">{listItem.type}</span>
+                        <div className='listInfoItem'>
+                            <span className='listInfoKey'>Type:</span>
+                            <span className='listInfoValue'>{listItem.type}</span>
                         </div>
                     </div>
                 </div>
             </div>
-            <div className="productBottom">
-                <form className="productForm">
-                    <div className="productFormLeft">
+
+            <div className='listBottom'>
+                <form className='listForm'>
+                    <div className='listFormLeft'>
                         <label>List Title</label>
-                        <input type="text" placeholder={listItem.title} />
+                        <input type='text' placeholder={listItem.title} />
                         <label>Type</label>
-                        <input type="text" placeholder={listItem.type} />
+                        <input type='text' placeholder={listItem.type} />
                         <label>Genre</label>
-                        <input type="text" placeholder={listItem.genre} />
+                        <input type='text' placeholder={listItem.genre} />
                     </div>
-                    <div className="productFormRight">
-                        <button className="productButton">Update</button>
+                    <div className='listFormRight'>
+                        <button className='listButton'>Update</button>
                     </div>
                 </form>
             </div>
         </div>
     );
-}
+};
+
+export default ListItem

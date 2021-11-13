@@ -1,27 +1,25 @@
-import Chart from "../../components/chart/Chart";
-import FeaturedInfo from "../../components/featuredInfo/FeaturedInfo";
-import "./home.css";
-import { userData } from "../../dummyData";
-import WidgetSm from "../../components/widgetSm/WidgetSm";
-import WidgetLg from "../../components/widgetLg/WidgetLg";
-import { useEffect, useMemo, useState } from "react";
 import axios from 'axios';
+import { useEffect, useMemo, useState } from 'react';
+import Chart from '../../components/chart/Chart';
+import WidgetLg from '../../components/widgetLg/WidgetLg';
+import WidgetSm from '../../components/widgetSm/WidgetSm';
 import { apiUrl } from '../../constants/constant';
+import './home.css';
 
 const Home = () => {
   const MONTHS = useMemo(() => [
-    "Jan",
-    "Feb",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December"
+    'Jan',
+    'Feb',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
   ], []);
 
   const [userStats, setUserStats] = useState([]);
@@ -32,7 +30,7 @@ const Home = () => {
         const response = await axios.get(
           `${apiUrl}/users/stats`, {
           headers: {
-            token: "Bearer "+JSON.parse(localStorage.getItem("user")).accessToken
+            token: 'Bearer ' + JSON.parse(localStorage.getItem('user')).accessToken
           }
         }
         );
@@ -50,15 +48,14 @@ const Home = () => {
   }, [MONTHS]);
 
   return (
-    <div className="home">
-      <FeaturedInfo />
+    <div className='home'>
       <Chart
         data={userStats}
-        title="User Analytics"
+        title='User Analytics'
         grid
-        dataKey="New User"
+        dataKey='New User'
       />
-      <div className="homeWidgets">
+      <div className='homeWidgets'>
         <WidgetSm />
         <WidgetLg />
       </div>
