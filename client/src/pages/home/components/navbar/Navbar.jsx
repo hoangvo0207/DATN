@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { logoutRequest } from '../../../../authContext/AuthAction';
 import { AuthContext } from '../../../../authContext/AuthContext';
 import './navbar.scss';
+import logo from '../navbar/logo.PNG';
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -21,7 +22,8 @@ const Navbar = () => {
             <div className='container'>
                 <div className='left'>
                     <img
-                        src='https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/2560px-Netflix_2015_logo.svg.png'
+                        style={{ height: 60, borderRadius: '50%', marginTop: 5 }}
+                        src={logo}
                         alt='Logo'
                     />
                     <Link to='/' className='link'>

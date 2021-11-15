@@ -10,38 +10,38 @@ import Watch from './pages/watch/Watch';
 import { AuthContext } from './authContext/AuthContext';
 
 const App = () => {
-    const user = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
 
     return (
         <Router>
             <Switch>
                 <Route exact path='/'>
-                    {user ? <Home /> : <Redirect to='/register' />}
+                    {user ? <Home /> : <Redirect to='/login' />}
                 </Route>
 
-                <Route path='/register'>
-                    {!user ? <Register /> : <Redirect to='/' />}
+                <Route exact path='/register'>
+                    <Register />
                 </Route>
 
-                <Route path='/login'>
+                <Route exact path='/login'>
                     {!user ? <Login /> : <Redirect to='/' />}
                 </Route>
 
-                {user && (
+                {user ? (
                     <React.Fragment>
-                        <Route path='/movies'>
-                            <Home type='movie' />
+                        <Route exact path='/movies'>
+                            <Home type='movies' />
                         </Route>
 
-                        <Route path='/series'>
+                        <Route exact path='/series'>
                             <Home type='series' />
                         </Route>
 
-                        <Route path='/watch'>
+                        <Route exact path='/watch'>
                             <Watch />
                         </Route>
                     </React.Fragment>
-                )}
+                ) : <Redirect to='/login' />}
             </Switch>
         </Router>
     );

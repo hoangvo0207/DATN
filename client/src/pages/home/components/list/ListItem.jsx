@@ -19,7 +19,7 @@ const ListItem = (props) => {
                 const response = await axios.get(
                     `${apiUrl}/movies/find/${movieId}`, {
                     headers: {
-                        token: 'Bearer '+JSON.parse(localStorage.getItem('user')).accessToken
+                        token: 'Bearer '+JSON.parse(localStorage.getItem("user")).accessToken
                     }
                 }
                 );

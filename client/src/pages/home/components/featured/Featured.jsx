@@ -16,7 +16,7 @@ const Featured = (props) => {
             try {
                 const response = await axios.get(`${apiUrl}/movies/random?type=${type}`, {
                     headers: {
-                        token: 'Bearer ' + JSON.parse(localStorage.getItem('user')).accessToken
+                        token: 'Bearer ' + JSON.parse(localStorage.getItem("user")).accessToken
                     }
                 }
                 );

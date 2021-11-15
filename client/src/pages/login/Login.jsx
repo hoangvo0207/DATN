@@ -2,6 +2,8 @@ import React, { useContext, useState } from 'react';
 import './login.scss';
 import { login } from '../../authContext/apiCall';
 import { AuthContext } from '../../authContext/AuthContext';
+import { Link } from 'react-router-dom';
+import logo from '../login/logo.PNG';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -20,8 +22,8 @@ const Login = () => {
                 <div className='wrapper'>
                     <img
                         className='logo'
-                        src='https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/2560px-Netflix_2015_logo.svg.png'
-                        alt=''
+                        src={logo}
+                        alt='logo'
                     />
                 </div>
             </div>
@@ -42,7 +44,10 @@ const Login = () => {
                         Sign In
                     </button>
                     <span>
-                        New to Netflix? <b>Sign up now.</b>
+                        New Member?
+                        <Link to='/register'  style={{ textDecoration: 'none', marginLeft: 10 }}>
+                            <b>Sign up now.</b>
+                        </Link>
                     </span>
                     <small>
                         This page is protected by Google reCAPTCHA to ensure you're not a

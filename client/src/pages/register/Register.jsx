@@ -1,14 +1,16 @@
+import axios from 'axios';
 import React, { useRef, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { apiUrl } from '../../constants/constant';
 import './register.scss';
+import logo from '../register/logo.PNG';
 
 const Register = () => {
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    const history = useHistory
+    const history = useHistory();
 
     const emailRef = useRef();
     const usernameRef = useRef();
@@ -23,12 +25,12 @@ const Register = () => {
         setPassword(passwordRef.current.value);
         setUsername(usernameRef.current.value);
         try {
-            await axios.posts(`${apiUrl}/auth/register`, { email, username, password });
+            await axios.post(`${apiUrl}/auth/register`, { email, username, password });
             history.push('/login');
         } catch (error) {
             console.log(error);
         }
-    }
+    };
 
     return (
         <div className='register'>
@@ -36,12 +38,9 @@ const Register = () => {
                 <div className='wrapper'>
                     <img
                         className='logo'
-                        src='https://scontent.fdad3-4.fna.fbcdn.net/v/t1.6435-9/150545001_2211912815607337_523701711744111415_n.jpg?_nc_cat=101&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=st8Wj-gtYJIAX_Hal61&_nc_ht=scontent.fdad3-4.fna&oh=8e879c8350d19b6b355c2dc90d6fd76f&oe=61A5EB7E'
+                        src={logo}
                         alt='logo'
                     />
-                    <button className='loginButton'>
-                        Sign In
-                    </button>
                 </div>
             </div>
 
@@ -62,7 +61,7 @@ const Register = () => {
                         </div>
                     ) : (
                         <form className='input'>
-                            <input type='username' placeholder='Password' ref={usernameRef} />
+                            <input type='username' placeholder='Username' ref={usernameRef} />
                             <input type='password' placeholder='Password' ref={passwordRef} />
                             <button
                                 className='registerButton'
@@ -73,6 +72,9 @@ const Register = () => {
                         </form>
                     )
                 }
+                <Link to='/login' style={{ marginTop: 10, color: 'white', textDecoration: 'none' }}>
+                    <p>Already have account? Sign In</p>
+                </Link>
             </div>
         </div>
     );
