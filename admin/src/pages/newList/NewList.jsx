@@ -4,7 +4,7 @@ import { createList } from '../../contexts/listContext/apiCall';
 import { ListContext } from '../../contexts/listContext/ListContext';
 import { getMovies } from '../../contexts/movieContext/apiCall';
 import { MovieContext } from '../../contexts/movieContext/MovieContext';
-import './newList.css';
+import './newList.scss';
 
 const NewList = () => {
     const [list, setList] = useState(null);

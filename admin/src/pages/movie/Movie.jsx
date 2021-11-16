@@ -1,6 +1,6 @@
 import { Publish } from '@material-ui/icons';
 import { Link, useLocation } from 'react-router-dom';
-import './movie.css';
+import './movie.scss';
 
 const Movie = () => {
     const location = useLocation()

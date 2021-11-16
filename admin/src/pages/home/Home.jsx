@@ -4,7 +4,7 @@ import Chart from '../../components/chart/Chart';
 import WidgetLg from '../../components/widgetLg/WidgetLg';
 import WidgetSm from '../../components/widgetSm/WidgetSm';
 import { apiUrl } from '../../constants/constant';
-import './home.css';
+import './home.scss';
 
 const Home = () => {
   const MONTHS = useMemo(() => [

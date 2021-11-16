@@ -4,7 +4,7 @@ import { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { deleteList, getLists } from '../../contexts/listContext/apiCall';
 import { ListContext } from '../../contexts/listContext/ListContext';
-import './list.css';
+import './list.scss';
 
 const List = () => {
   const { lists, dispatch } = useContext(ListContext);

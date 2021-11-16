@@ -2,7 +2,7 @@ import {
   AttachMoney, LineStyle, PermIdentity, PlayCircleOutline
 } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
-import './sidebar.css';
+import './sidebar.scss';
 
 const Sidebar = () => {
   return (

@@ -4,7 +4,7 @@ import { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { deleteMovie, getMovies } from '../../contexts/movieContext/apiCall';
 import { MovieContext } from '../../contexts/movieContext/MovieContext';
-import './movieList.css';
+import './movieList.scss';
 
 const MovieList = () => {
   const { movies, dispatch } = useContext(MovieContext);

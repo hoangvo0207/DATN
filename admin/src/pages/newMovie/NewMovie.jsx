@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import { createMovie } from '../../contexts/movieContext/apiCall';
 import { MovieContext } from '../../contexts/movieContext/MovieContext';
-import './newMovie.css';
+import './newMovie.scss';
 
 const NewMovie = () => {
   const [movie, setMovie] = useState(null);

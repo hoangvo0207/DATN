@@ -1,7 +1,8 @@
 import React, { useContext, useState } from 'react';
 import { login } from '../../contexts/authContext/apiCall';
 import { AuthContext } from '../../contexts/authContext/AuthContext';
-import './login.css';
+import './login.scss';
+import logo from '../login/logo.PNG';
 
 const Login = () => {
     const { isLoading, dispatch } = useContext(AuthContext);
@@ -15,27 +16,33 @@ const Login = () => {
 
     return (
         <div className='login'>
-            <form className='loginForm'>
-                <input
-                    type='text'
-                    placeholder='email'
-                    className='loginInput'
-                    onChange={(e) => setEmail(e.target.value)}
-                />
-                <input
-                    type='password'
-                    placeholder='password'
-                    className='loginInput'
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-                <button
-                    className='loginButton'
-                    onClick={handleLogin}
-                    disabled={isLoading}
-                >
-                    Login
-                </button>
-            </form>
+            <div className='top'>
+                <div className='wrapper'>
+                    <img
+                        className='logo'
+                        src={logo}
+                        alt='logo'
+                    />
+                </div>
+            </div>
+            <div className='container'>
+                <form>
+                    <h1>Sign In</h1>
+                    <input
+                        type='text'
+                        placeholder='Email'
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+                    <input
+                        type='password'
+                        placeholder='Password'
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <button className='loginButton' onClick={handleLogin} disabled={isLoading}>
+                        Log In
+                    </button>
+                </form>
+            </div>
         </div>
     )
 };

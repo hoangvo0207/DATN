@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import './listItem.css';
+import './listItem.scss';
 
 const ListItem = () => {
     const location = useLocation()

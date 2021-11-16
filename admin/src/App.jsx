@@ -22,10 +22,24 @@ const App = () => {
   return (
     <Router>
       <Switch>
-        <Route exact path='/login'>
-          {user ? <Redirect to='/' /> : <Login />}
+        <Route exact path='/'>
+          {user ? (
+            <React.Fragment>
+              <Topbar />
+              <div className='container'>
+                <Sidebar />
+                <Home />
+              </div>
+            </React.Fragment>
+          ) : <Redirect to='/login' />
+          }
         </Route>
-        {user && (
+
+        <Route exact path='/login'>
+          {!user ? <Login /> : <Redirect to='/' />}
+        </Route>
+
+        {user ? (
           <React.Fragment>
             <Topbar />
             <div className='container'>
@@ -62,7 +76,7 @@ const App = () => {
               </Route>
             </div>
           </React.Fragment>
-        )}
+        ) : <Redirect to='/login' />}
       </Switch>
     </Router>
   );

@@ -1,4 +1,4 @@
-import './widgetLg.css';
+import './widgetLg.scss';
 
 const WidgetLg = () => {
   const Button = ({ type }) => {
