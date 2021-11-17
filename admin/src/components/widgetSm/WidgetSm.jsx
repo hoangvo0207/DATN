@@ -1,10 +1,9 @@
-import './widgetSm.scss';
 import { Visibility } from '@material-ui/icons';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { apiUrl } from '../../constants/constant';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { apiUrl } from '../../constants/constant';
+import './widgetSm.scss';
 
 const WidgetSm = () => {
   const [newUsers, setNewUsers] = useState([]);
@@ -33,11 +32,16 @@ const WidgetSm = () => {
       <ul className='widgetSmList'>
         {newUsers.map((newUser) => (
           <li className='widgetSmListItem'>
-            <img
-              src={newUser.profilePic || <AccountCircleIcon />}
-              alt='avatar'
-              className='widgetSmImg'
-            />
+            {
+              newUser.profilePic !== '' ?
+                <img
+                  src={newUser.profilePic}
+                  alt='avatar'
+                  className='widgetSmImg'
+                />
+                : <AccountCircleIcon className='widgetSmImg' />
+            }
+
             <div className='widgetSmUser'>
               <span className='widgetSmUsername'>{newUser.username}</span>
             </div>

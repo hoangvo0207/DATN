@@ -36,6 +36,30 @@ const ListReducer = (state, action) => {
                 isLoading: false,
                 error: true
             };
+        case 'UPDATE_LIST_REQUEST':
+            return {
+                ...state,
+                isLoading: true,
+                error: false
+            };
+        case 'UPDATE_LIST_SUCCESS': {
+            const newList = state.lists.map((list) =>
+                list._id === action.payload._id ? action.payload : list
+            );
+            return {
+                ...state,
+                lists: newList,
+                isLoading: false,
+                error: false
+            }
+        }
+
+        case 'UPDATE_LIST_FAILURE':
+            return {
+                ...state,
+                isLoading: false,
+                error: true
+            };
         case 'DELETE_LIST_REQUEST':
             return {
                 ...state,

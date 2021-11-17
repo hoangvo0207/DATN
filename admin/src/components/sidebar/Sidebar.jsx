@@ -1,6 +1,7 @@
-import {
-  AttachMoney, LineStyle, PermIdentity, PlayCircleOutline
-} from '@material-ui/icons';
+import LineStyle from '@material-ui/icons/LineStyle';
+import PermIdentity from '@material-ui/icons/PermIdentity';
+import PlayCircleOutline from '@material-ui/icons/PlayCircleOutline';
+import Reorder from '@material-ui/icons/Reorder';
 import { Link } from 'react-router-dom';
 import './sidebar.scss';
 
@@ -9,7 +10,7 @@ const Sidebar = () => {
     <div className='sidebar'>
       <div className='sidebarWrapper'>
         <div className='sidebarMenu'>
-          <h3 className='sidebarTitle'>Dashboard</h3>
+          <h2 className='sidebarTitle'>Dashboard</h2>
           <ul className='sidebarList'>
             <Link to='/' className='link'>
               <li className='sidebarListItem active'>
@@ -21,7 +22,7 @@ const Sidebar = () => {
         </div>
 
         <div className='sidebarMenu'>
-          <h3 className='sidebarTitle'>Quick Menu</h3>
+          <h2 className='sidebarTitle'>Quick Menu</h2>
           <ul className='sidebarList'>
             <Link to='/users' className='link'>
               <li className='sidebarListItem'>
@@ -37,7 +38,7 @@ const Sidebar = () => {
             </Link>
             <Link to='/lists' className='link'>
               <li className='sidebarListItem'>
-                <AttachMoney className='sidebarIcon' />
+                <Reorder className='sidebarIcon' />
                 Lists
               </li>
             </Link>

@@ -1,3 +1,7 @@
+import { Paper, Typography } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
+import TextField from '@material-ui/core/TextField';
 import { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { createList } from '../../contexts/listContext/apiCall';
@@ -34,39 +38,71 @@ const NewList = () => {
     }
 
     return (
-        <div className='newList'>
-            <h1 className='addListTitle'>New Movie</h1>
-            <form className='addListForm'>
-                <div className='addListItem'>
-                    <label>Title</label>
-                    <input type='text' placeholder='John Wick' name='title' onChange={handleChange} />
-                </div>
+        <Grid container spacing={3} className='newList'>
+            <Grid item xs={12}>
+                <Typography variant='h3' className='title'>
+                    New List
+                </Typography>
+                <Paper elevation={10} style={{width: '100%', height: '90%', marginLeft: 5}}>
+                    <form >
+                        <div className='addListItem' >
+                            <label>Title</label>
+                            <TextField
+                                label='Title'
+                                name='title'
+                                variant='outlined'
+                                fullWidth
+                                onChange={handleChange}
+                            />
+                        </div>
 
-                <div className='addListItem'>
-                    <label>Genre</label>
-                    <input type='text' placeholder='Genre' name='genre' />
-                </div>
+                        <div className='addListItem' >
+                            <label>Type</label>
+                            <select name='type' id='type' onChange={handleChange}>
+                                <option value='movies'>Movies</option>
+                                <option value='series'>Series</option>
+                            </select>
+                        </div>
 
-                <div className='addListItem'>
-                    <label>Type</label>
-                    <select name='type' id='type' onChange={handleChange}>
-                        <option value='movie'>Movie</option>
-                        <option value='series'>Series</option>
-                    </select>
-                </div>
+                        <div className='addListItem' >
+                            <label>Genre</label>
+                            <TextField
+                                label='Genre'
+                                name='genre'
+                                variant='outlined'
+                                fullWidth
+                                onChange={handleChange}
+                            />
+                        </div>
 
-                <div className='addListItem'>
-                    <label>Content</label>
-                    <select multiple name='content' id='type' onChange={handleSelect}>
-                        {movies.map((movie) => (
-                            <option key={movie._id} value={movie._id}>{movie.title}</option>
-                        ))}
-                    </select>
-                </div>
+                        <div className='addListItem' >
+                            <label>Content</label>
+                            <select
+                                multiple
+                                name='content'
+                                id='content'
+                                onChange={handleSelect}
+                                style={{ height: 200 }}
+                            >
+                                {movies.map((movie) => (
+                                    <option key={movie._id} value={movie._id}>{movie.title}</option>
+                                ))}
+                            </select>
+                        </div>
 
-                <button className='addListButton' onClick={handleSubmit}>Create</button>
-            </form>
-        </div>
+                        <Button
+                            variant='contained'
+                            color='primary'
+                            className='button'
+                            onClick={handleSubmit}
+                            style={{ marginLeft: 20 }}
+                        >
+                            Submit
+                        </Button>
+                    </form>
+                </Paper>
+            </Grid>
+        </Grid>
     );
 };
 

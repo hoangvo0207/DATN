@@ -14,6 +14,30 @@ export const createList = async (req, res) => {
     }
 };
 
+export const updateList = async (req, res) => {
+    if (req.user.isAdmin) {
+        try {
+            const { title, type, genre } = req.body;
+
+            if (!title)
+                return res.status(400).json({ success: false, message: 'Title is required!' });
+
+            let updatedList = {
+                title,
+                type: type || '',
+                genre: genre || ''
+            }
+
+            const listUpdateCondition = { _id: req.params.id };
+            updatedList = await List.findOneAndUpdate(listUpdateCondition, updatedList, { new: true });
+            res.status(200).json(updatedList);
+        } catch (error) {
+            res.status(500).json(error);
+        }
+    } else {
+        res.status(403).json('You are not allowed');
+    }
+};
 
 export const deleteList = async (req, res) => {
     if (req.user.isAdmin) {

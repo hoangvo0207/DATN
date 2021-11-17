@@ -1,45 +1,27 @@
-.newList {
+  .newList {
     flex: 4;
   }
   
-  .addListForm {
-    margin-top: 10px;
-    display: flex;
-    flex-wrap: wrap;
-  }
-  
   .addListItem {
-    width: 250px;
     display: flex;
     flex-direction: column;
-    margin-bottom: 10px;
     padding: 20px;
+  }
+
+  .title {
+    align-items: center;
+    justify-content: center;
+    display: flex;
   }
   
   .addListItem > label {
     color: gray;
-    font-weight: 600;
+    font-weight: 650;
     margin-bottom: 10px;
-  }
-  
-  .addListItem > input {
-    padding: 10px;
   }
   
   .addListItem > select {
     padding: 10px;
-  }
-  
-  .addListButton {
-    height: 30px;
-    margin-top: 10px;
-    padding: 7px 10px;
-    border: none;
-    border-radius: 10px;
-    background-color: darkblue;
-    color: white;
-    font-weight: 600;
-    cursor: pointer;
-    align-self: center;
+    height: 60px;
   }
   
