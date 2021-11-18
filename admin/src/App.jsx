@@ -65,7 +65,7 @@ const App = () => {
               <Route path='/newMovie'>
                 <NewMovie />
               </Route>
-              <Route path='/lists'>
+              <Route exact path='/lists'>
                 <List />
               </Route>
               <Route path='/lists/:listId'>

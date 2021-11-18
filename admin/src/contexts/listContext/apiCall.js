@@ -34,12 +34,12 @@ export const updateList = async (updatedList, dispatch) => {
     dispatch(updateListRequest());
     try {
         const response = await axios.put(`${apiUrl}/lists/${updatedList._id}`,
+            updatedList,
             {
                 headers: {
                     token: 'Bearer ' + JSON.parse(localStorage.getItem('user')).accessToken
                 },
-            },
-            updatedList
+            }
         );
         dispatch(updateListSuccess(response.data));
     } catch (error) {

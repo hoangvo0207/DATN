@@ -36,6 +36,11 @@ const ListReducer = (state, action) => {
                 isLoading: false,
                 error: true
             };
+        case 'FIND_LIST':
+            return {
+                ...state,
+                list: action.payload
+            }
         case 'UPDATE_LIST_REQUEST':
             return {
                 ...state,

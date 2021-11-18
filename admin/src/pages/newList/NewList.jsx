@@ -1,7 +1,8 @@
-import { Paper, Typography } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
 import { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { createList } from '../../contexts/listContext/apiCall';
@@ -40,15 +41,14 @@ const NewList = () => {
     return (
         <Grid container spacing={3} className='newList'>
             <Grid item xs={12}>
-                <Typography variant='h3' className='title'>
+                <Typography variant='h4' className='title'>
                     New List
                 </Typography>
-                <Paper elevation={10} style={{width: '100%', height: '90%', marginLeft: 5}}>
+                <Paper elevation={5} style={{ width: '100%', marginLeft: 5, marginTop: 20 }}>
                     <form >
                         <div className='addListItem' >
                             <label>Title</label>
                             <TextField
-                                label='Title'
                                 name='title'
                                 variant='outlined'
                                 fullWidth
@@ -67,7 +67,6 @@ const NewList = () => {
                         <div className='addListItem' >
                             <label>Genre</label>
                             <TextField
-                                label='Genre'
                                 name='genre'
                                 variant='outlined'
                                 fullWidth
@@ -95,7 +94,7 @@ const NewList = () => {
                             color='primary'
                             className='button'
                             onClick={handleSubmit}
-                            style={{ marginLeft: 20 }}
+                            style={{ marginLeft: 20, marginBottom: 20 }}
                         >
                             Submit
                         </Button>
