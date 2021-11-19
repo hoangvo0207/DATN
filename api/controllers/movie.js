@@ -17,9 +17,26 @@ export const createMovie = async (req, res) => {
 export const updateMovie = async (req, res) => {
     if (req.user.isAdmin) {
         try {
-            const updatedMovie = await Movie.findByIdAndUpdate(req.params.id, {
-                $set: req.body
-            }, { new: true });
+            const { title, desc, img, imgTitle, imgSm, trailer, video, year, limit, isSeries, genre } = req.body;
+
+            if (!title)
+                return res.status(400).json({ success: false, message: 'Title is required!' });
+
+            let updatedMovie = {
+                title,
+                desc: desc || '',
+                img: img || '',
+                imgTitle: imgTitle || '',
+                imgSm: imgSm || '',
+                trailer: trailer || '',
+                video: video || '',
+                year: year || '',
+                limit: limit || 0,
+                genre: genre || ''
+            }
+
+            const movieUpdateCondition = { _id: req.params.id };
+            updatedMovie = await Movie.findOneAndUpdate(movieUpdateCondition, updatedMovie, { new: true });
             res.status(200).json(updatedMovie);
         } catch (error) {
             res.status(500).json(error);

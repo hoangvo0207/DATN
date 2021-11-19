@@ -20,7 +20,7 @@ export const ListContextProvider = (props) => {
             type: 'FIND_LIST',
             payload: list
         })
-    }
+    };
 
     return (
         <ListContext.Provider

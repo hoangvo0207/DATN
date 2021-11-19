@@ -56,7 +56,7 @@ const App = () => {
               <Route path='/newUser'>
                 <NewUser />
               </Route>
-              <Route path='/movies'>
+              <Route exact path='/movies'>
                 <MovieList />
               </Route>
               <Route path='/movies/:movieId'>

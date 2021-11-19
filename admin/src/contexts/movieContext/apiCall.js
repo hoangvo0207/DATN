@@ -1,6 +1,6 @@
-import { createMovieFailure, createMovieRequest, createMovieSuccess, deleteMovieFailure, deleteMovieRequest, deleteMovieSuccess, getMoviesFailure, getMoviesRequest, getMoviesSuccess } from "./MovieAction";
 import axios from 'axios';
 import { apiUrl } from '../../constants/constant';
+import { createMovieFailure, createMovieRequest, createMovieSuccess, deleteMovieFailure, deleteMovieRequest, deleteMovieSuccess, getMoviesFailure, getMoviesRequest, getMoviesSuccess, updateMovieFailure, updateMovieRequest, updateMovieSuccess } from "./MovieAction";
 
 export const getMovies = async (dispatch) => {
     dispatch(getMoviesRequest());
@@ -27,6 +27,23 @@ export const createMovie = async (movie, dispatch) => {
         dispatch(createMovieSuccess(respone.data));
     } catch (error) {
         dispatch(createMovieFailure());
+    }
+};
+
+export const updateMovie = async (updatedMovie, dispatch) => {
+    dispatch(updateMovieRequest());
+    try {
+        const response = await axios.put(`${apiUrl}/movies/${updatedMovie._id}`,
+            updatedMovie,
+            {
+                headers: {
+                    token: 'Bearer ' + JSON.parse(localStorage.getItem('user')).accessToken
+                },
+            }
+        );
+        dispatch(updateMovieSuccess(response.data));
+    } catch (error) {
+        dispatch(updateMovieFailure());
     }
 };
 

@@ -36,6 +36,34 @@ const MovieReducer = (state, action) => {
                 isLoading: false,
                 error: true
             };
+        case 'FIND_MOVIE':
+            return {
+                ...state,
+                movie: action.payload
+            }
+        case 'UPDATE_MOVIE_REQUEST':
+            return {
+                ...state,
+                isLoading: true,
+                error: false
+            };
+        case 'UPDATE_MOVIE_SUCCESS': {
+            const newmovie = state.movies.map((movie) =>
+                movie._id === action.payload._id ? action.payload : movie
+            );
+            return {
+                ...state,
+                movies: newmovie,
+                isLoading: false,
+                error: false
+            }
+        };
+        case 'UPDATE_MOVIE_FAILURE':
+            return {
+                ...state,
+                isLoading: false,
+                error: true
+            };
         case 'DELETE_MOVIE_REQUEST':
             return {
                 ...state,

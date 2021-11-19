@@ -1,13 +1,19 @@
+import Button from '@material-ui/core/Button';
+import { green } from '@material-ui/core/colors';
+import IconButton from '@material-ui/core/IconButton';
 import { DataGrid } from '@material-ui/data-grid';
-import { DeleteOutline } from '@material-ui/icons';
-import { useContext, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import DeleteOutline from '@material-ui/icons/DeleteOutline';
+import EditIcon from '@material-ui/icons/Edit';
+import React, { useContext, useEffect } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import { deleteMovie, getMovies } from '../../contexts/movieContext/apiCall';
 import { MovieContext } from '../../contexts/movieContext/MovieContext';
 import './movieList.scss';
 
 const MovieList = () => {
-  const { movies, dispatch } = useContext(MovieContext);
+  const { movies, findMovie, dispatch } = useContext(MovieContext);
+
+  const history = useHistory();
 
   useEffect(() => {
     getMovies(dispatch);
@@ -17,12 +23,17 @@ const MovieList = () => {
     deleteMovie(id, dispatch);
   };
 
+  const handleFindMovie = (movieId) => {
+    findMovie(movieId);
+    history.push(`/movies/${movieId}`);
+  }
+
   const columns = [
-    { field: '_id', headerName: 'ID', width: 90 },
+    { field: '_id', headerName: 'ID', width: 300 },
     {
       field: 'movie',
       headerName: 'Movie',
-      width: 200,
+      width: 250,
       renderCell: (params) => {
         return (
           <div className='movieListItem'>
@@ -32,25 +43,25 @@ const MovieList = () => {
         );
       },
     },
-    { field: 'genre', headerName: 'Genre', width: 120 },
-    { field: 'year', headerName: 'Year', width: 120 },
-    { field: 'limit', headerName: 'Limit', width: 120 },
-    { field: 'isSeries', headerName: 'Series', width: 120 },
+    { field: 'genre', headerName: 'Genre', width: 150 },
+    { field: 'year', headerName: 'Year', width: 150 },
+    { field: 'limit', headerName: 'Limit', width: 150 },
+    { field: 'isSeries', headerName: 'Series', width: 150 },
     {
       field: 'action',
       headerName: 'Action',
       width: 150,
       renderCell: (params) => {
         return (
-          <>
-            <Link to={{ pathname: '/movies/' + params.row._id, movie: params.row }}>
-              <button className='movieListEdit'>Edit</button>
-            </Link>
+          <React.Fragment>
+            <IconButton onClick={handleFindMovie.bind(this, params.row._id)}>
+              <EditIcon style={{ color: green[500] }} />
+            </IconButton>
             <DeleteOutline
               className='movieListDelete'
               onClick={() => handleDelete(params.row._id)}
             />
-          </>
+          </React.Fragment>
         );
       },
     },
@@ -58,6 +69,12 @@ const MovieList = () => {
 
   return (
     <div className='movieList'>
+      <Link to='/newMovie' style={{ textDecoration: 'none' }}>
+        <Button className='createButton' variant='contained' color='primary'>
+          Create
+        </Button>
+      </Link>
+
       <DataGrid
         rows={movies}
         disableSelectionOnClick

@@ -1,18 +1,17 @@
 .newMovie {
   flex: 4;
+  padding: 20px;
 }
 
-.addMovieForm {
-  margin-top: 10px;
+.title {
+  align-items: center;
+  justify-content: center;
   display: flex;
-  flex-wrap: wrap;
 }
 
 .addMovieItem {
-  width: 250px;
   display: flex;
   flex-direction: column;
-  margin-bottom: 10px;
   padding: 20px;
 }
 
@@ -22,23 +21,7 @@
   margin-bottom: 10px;
 }
 
-.addMovieItem > input {
-  padding: 10px;
-}
-
 .addMovieItem > select {
   padding: 10px;
-}
-
-.addMovieButton {
-  height: 30px;
-  margin-top: 10px;
-  padding: 7px 10px;
-  border: none;
-  border-radius: 10px;
-  background-color: darkblue;
-  color: white;
-  font-weight: 600;
-  cursor: pointer;
-  align-self: center;
+  height: 60px;
 }
