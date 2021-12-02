@@ -47,7 +47,7 @@ const App = () => {
               <Route exact path='/'>
                 <Home />
               </Route>
-              <Route path='/users'>
+              <Route exact path='/users'>
                 <UserList />
               </Route>
               <Route path='/users/:userId'>

@@ -1,71 +1,76 @@
+import { green } from '@material-ui/core/colors';
+import IconButton from '@material-ui/core/IconButton';
 import { DataGrid } from '@material-ui/data-grid';
-import { DeleteOutline } from '@material-ui/icons';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { userRows } from '../../dummyData';
+import DeleteOutline from '@material-ui/icons/DeleteOutline';
+import EditIcon from '@material-ui/icons/Edit';
+import React, { useContext, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import { deleteUser, getUsers } from '../../contexts/userContext/apiCall';
+import { UserContext } from '../../contexts/userContext/UserContext';
 import './userList.scss';
 
 const UserList = () => {
-  const [data, setData] = useState(userRows);
+  const { users, findUser, dispatch } = useContext(UserContext);
+
+  const history = useHistory();
+
+  useEffect(() => {
+    getUsers(dispatch);
+  }, [dispatch]);
 
   const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
+    deleteUser(id, dispatch);
   };
 
+  const handleFindUser = (userId) => {
+    findUser(userId);
+    history.push(`/users/${userId}`);
+  }
+
   const columns = [
-    { field: 'id', headerName: 'ID', width: 90 },
+    { field: '_id', headerName: 'ID', width: 300 },
     {
-      field: 'user',
-      headerName: 'User',
+      field: 'profilePic',
+      headerName: 'Profile Picture',
       width: 200,
       renderCell: (params) => {
         return (
-          <div className='userListUser'>
-            <img className='userListImg' src={params.row.avatar} alt='' />
-            {params.row.username}
-          </div>
+          <img className='userImg' src={params.row.profilePic} alt='' />
         );
-      },
+      }
     },
+    { field: 'username', headerName: 'Username', width: 250 },
     { field: 'email', headerName: 'Email', width: 200 },
-    {
-      field: 'status',
-      headerName: 'Status',
-      width: 120,
-    },
-    {
-      field: 'transaction',
-      headerName: 'Transaction Volume',
-      width: 160,
-    },
+    { field: 'isAdmin', headerName: 'Admin', width: 200 },
     {
       field: 'action',
-      headerName: 'Action',
+      headerName: 'Actions',
       width: 150,
       renderCell: (params) => {
         return (
-          <>
-            <Link to={'/user/' + params.row.id}>
-              <button className='userListEdit'>Edit</button>
-            </Link>
+          <React.Fragment>
+            <IconButton onClick={handleFindUser.bind(this, params.row._id)}>
+              <EditIcon style={{ color: green[500] }} />
+            </IconButton>
             <DeleteOutline
-              className='userListDelete'
-              onClick={() => handleDelete(params.row.id)}
+              className='userDelete'
+              onClick={() => handleDelete(params.row._id)}
             />
-          </>
+          </React.Fragment>
         );
       },
     },
   ];
 
   return (
-    <div className='userList'>
+    <div className='user'>
       <DataGrid
-        rows={data}
+        rows={users}
         disableSelectionOnClick
         columns={columns}
         pageSize={8}
         checkboxSelection
+        getRowId={row => row._id}
       />
     </div>
   );
