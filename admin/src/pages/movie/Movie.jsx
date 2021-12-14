@@ -37,69 +37,6 @@ const Movie = () => {
     }
 
     return (
-        // <div className='movie'>
-        //     <div className='movieTitleContainer'>
-        //         <h1 className='movieTitle'>Movie</h1>
-        //         <Link to='/newMovie'>
-        //             <button className='movieAddButton'>Create</button>
-        //         </Link>
-        //     </div>
-
-        //     <div className='movieTop'>
-        //         <div className='movieTopRight'>
-        //             <div className='movieInfoTop'>
-        //                 <img src={movie.img} alt='movie-img' className='movieInfoImg' />
-        //                 <span className='movieName'>{movie.title}</span>
-        //             </div>
-        //             <div className='movieInfoBottom'>
-        //                 <div className='movieInfoItem'>
-        //                     <span className='movieInfoKey'>Id:</span>
-        //                     <span className='movieInfoValue'>{movie._id}</span>
-        //                 </div>
-        //                 <div className='movieInfoItem'>
-        //                     <span className='movieInfoKey'>Genre:</span>
-        //                     <span className='movieInfoValue'>{movie.genre}</span>
-        //                 </div>
-        //                 <div className='movieInfoItem'>
-        //                     <span className='movieInfoKey'>Year:</span>
-        //                     <span className='movieInfoValue'>{movie.year}</span>
-        //                 </div>
-        //                 <div className='movieInfoItem'>
-        //                     <span className='movieInfoKey'>Limit:</span>
-        //                     <span className='movieInfoValue'>{movie.limit}</span>
-        //                 </div>
-        //             </div>
-        //         </div>
-        //     </div>
-
-        //     <div className='movieBottom'>
-        //         <form className='movieForm'>
-        //             <div className='movieFormLeft'>
-        //                 <label>Movie Title</label>
-        //                 <input type='text' placeholder={movie.title} />
-        //                 <label>Year</label>
-        //                 <input type='text' placeholder={movie.year} />
-        //                 <label>Limit</label>
-        //                 <input type='text' placeholder={movie.limit} />
-        //                 <label>Trailer</label>
-        //                 <input type='file' placeholder={movie.trailer} />
-        //                 <label>Video</label>
-        //                 <input type='file' placeholder={movie.video} />
-        //             </div>
-        //             <div className='movieFormRight'>
-        //                 <div className='movieUpload'>
-        //                     <img src={movie.title} />
-        //                     <label for='file'>
-        //                         <Publish />
-        //                     </label>
-        //                     <input type='file' id='file' style={{ display: 'none' }} />
-        //                 </div>
-        //                 <button className='movieButton'>Update</button>
-        //             </div>
-        //         </form>
-        //     </div>
-        // </div>
-
         <Grid container spacing={3} className='movie'>
             <Grid item xs={12}>
                 <Typography variant='h4' className='movieTitle'>
@@ -220,7 +157,6 @@ const Movie = () => {
                                 <TextField
                                     name='isSeried'
                                     variant='outlined'
-                                    disabled
                                     fullWidth
                                     value={updatedMovie.isSeried ? 'Series' : 'Movies'}
                                 />
@@ -233,6 +169,17 @@ const Movie = () => {
                                     variant='outlined'
                                     fullWidth
                                     value={updatedMovie.genre}
+                                    onChange={handleChange}
+                                />
+                            </div>
+
+                            <div className='addMovieItem' >
+                                <label>Video</label>
+                                <TextField
+                                    name='video'
+                                    variant='outlined'
+                                    fullWidth
+                                    value={updatedMovie.video}
                                     onChange={handleChange}
                                 />
                             </div>

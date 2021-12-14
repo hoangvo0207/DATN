@@ -3,11 +3,12 @@ import {
     BrowserRouter as Router, Redirect, Route, Switch
 } from 'react-router-dom';
 import './app.scss';
+import { AuthContext } from './authContext/AuthContext';
+import ListItemDetail from './pages/home/components/list/ListItemDetail';
 import Home from './pages/home/Home';
 import Login from './pages/login/Login';
 import Register from './pages/register/Register';
 import Watch from './pages/watch/Watch';
-import { AuthContext } from './authContext/AuthContext';
 
 const App = () => {
     const { user } = useContext(AuthContext);
@@ -39,6 +40,10 @@ const App = () => {
 
                         <Route exact path='/watch'>
                             <Watch />
+                        </Route>
+
+                        <Route exact path='/detail'>
+                            <ListItemDetail />
                         </Route>
                     </React.Fragment>
                 ) : <Redirect to='/login' />}

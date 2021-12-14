@@ -19,7 +19,7 @@ const ListItem = (props) => {
                 const response = await axios.get(
                     `${apiUrl}/movies/find/${movieId}`, {
                     headers: {
-                        token: 'Bearer '+JSON.parse(localStorage.getItem("user")).accessToken
+                        token: 'Bearer ' + JSON.parse(localStorage.getItem("user")).accessToken
                     }
                 }
                 );
@@ -32,45 +32,45 @@ const ListItem = (props) => {
     }, [movieId]);
 
     return (
-        <Link className='link' to={{ pathname: '/watch', movie: movie }}>
-            <div
-                className='listItem'
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
-            >
-                <img
-                    src={movie.img}
-                    alt='movie-image'
-                />
+        <div
+            className='listItem'
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+        >
+            <img
+                src={movie.img}
+                alt='movie-image'
+            />
 
-                {isHovered && (
-                    <React.Fragment>
-                        <div className='itemInfo'>
-                            <div className='icons'>
+            {isHovered && (
+                <React.Fragment>
+                    <div className='itemInfo'>
+                        <div className='icons'>
+                            <Link className='link' to={{ pathname: '/detail', movie: movie }}>
                                 <PlayArrow className='icon' />
-                                <Add className='icon' />
-                                <ThumbUpAltOutlined className='icon' />
-                                <ThumbDownOutlined className='icon' />
-                            </div>
-
-                            <div className='itemInfoTop'>
-                                <span>{movie.duration}</span>
-                                <span className='limit'>+{movie.limit}</span>
-                                <span>{movie.year}</span>
-                            </div>
-
-                            <div className='desc'>
-                                {movie.desc}
-                            </div>
-
-                            <div className='genre'>
-                                {movie.genre}
-                            </div>
+                            </Link>
+                            <Add className='icon' />
+                            <ThumbUpAltOutlined className='icon' />
+                            <ThumbDownOutlined className='icon' />
                         </div>
-                    </React.Fragment>
-                )}
-            </div>
-        </Link>
+
+                        <div className='itemInfoTop'>
+                            <span>{movie.duration}</span>
+                            <span className='limit'>+{movie.limit}</span>
+                            <span>{movie.year}</span>
+                        </div>
+
+                        <div className='desc'>
+                            {movie.desc}
+                        </div>
+
+                        <div className='genre'>
+                            {movie.genre}
+                        </div>
+                    </div>
+                </React.Fragment>
+            )}
+        </div>
     );
 };
 

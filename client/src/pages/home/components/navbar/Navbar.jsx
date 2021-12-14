@@ -7,6 +7,7 @@ import { logoutRequest } from '../../../../authContext/AuthAction';
 import { AuthContext } from '../../../../authContext/AuthContext';
 import './navbar.scss';
 import logo from '../navbar/logo.PNG';
+import facebook_ava from '../navbar/facebook_ava.jpg';
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -45,11 +46,11 @@ const Navbar = () => {
 
                 <div className='right'>
                     <Search className='icon' />
-                    <span>KID</span>
+                    <span>Hi, Hoang!</span>
                     <Notifications className='icon' />
                     <img
-                        src='https://scontent.fdad3-4.fna.fbcdn.net/v/t1.6435-9/150545001_2211912815607337_523701711744111415_n.jpg?_nc_cat=101&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=st8Wj-gtYJIAX_Hal61&_nc_ht=scontent.fdad3-4.fna&oh=8e879c8350d19b6b355c2dc90d6fd76f&oe=61A5EB7E'
-                        alt='' />
+                        src={facebook_ava}
+                        alt='avatar' />
                     <div className='profile'>
                         <ArrowDropDown className='icon' />
                         <div className='options'>

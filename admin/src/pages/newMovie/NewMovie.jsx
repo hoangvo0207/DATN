@@ -21,7 +21,6 @@ const NewMovie = () => {
     e.preventDefault();
     createMovie(movie, dispatch);
     history.push('/movies');
-    window.onload();
   }
 
   return (

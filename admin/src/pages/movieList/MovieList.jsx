@@ -33,7 +33,7 @@ const MovieList = () => {
     {
       field: 'movie',
       headerName: 'Movie',
-      width: 250,
+      width: 420,
       renderCell: (params) => {
         return (
           <div className='movieListItem'>
@@ -46,7 +46,6 @@ const MovieList = () => {
     { field: 'genre', headerName: 'Genre', width: 150 },
     { field: 'year', headerName: 'Year', width: 150 },
     { field: 'limit', headerName: 'Limit', width: 150 },
-    { field: 'isSeries', headerName: 'Series', width: 150 },
     {
       field: 'action',
       headerName: 'Action',
