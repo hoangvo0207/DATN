@@ -1,21 +1,23 @@
-import { Button, Grid, makeStyles, Typography } from '@material-ui/core';
-import React from 'react';
-import { useLocation } from 'react-router-dom';
-import { Link } from 'react-router-dom';
-import Navbar from '../navbar/Navbar';
-import StartIcon from '@material-ui/icons/Star';
-import LocalOfferIcon from '@material-ui/icons/LocalOffer';
+import { makeStyles } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
+import LocalOfferIcon from '@material-ui/icons/LocalOffer';
+import StartIcon from '@material-ui/icons/Star';
+import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import Navbar from '../navbar/Navbar';
 
 const useStyles = makeStyles(() => ({
     root: {
-        height: 'calc(100% + 70px)',
+        height: '100vh',
         marginTop: 70,
         backgroundColor: '#0c222f',
     },
     contentLeft: {
         margin: 'auto',
-        marginTop: 70
+        marginTop: 50
     },
     contentRight: {
         color: 'white',
