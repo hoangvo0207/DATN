@@ -36,7 +36,7 @@ const Navbar = () => {
                     <Link to='/movies' className='link'>
                         <span className='span'>Movies</span>
                     </Link>
-                    <Link to='/popular' className='link'>
+                    <Link to='/recommend' className='link'>
                         <span className='span'>New and Popular</span>
                     </Link>
                     <Link to='/mylist' className='link'>

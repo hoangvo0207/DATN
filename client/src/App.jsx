@@ -7,6 +7,7 @@ import { AuthContext } from './authContext/AuthContext';
 import ListItemDetail from './pages/home/components/list/ListItemDetail';
 import Home from './pages/home/Home';
 import Login from './pages/login/Login';
+import Recommend from './pages/recommend/Recommend';
 import Register from './pages/register/Register';
 import Watch from './pages/watch/Watch';
 
@@ -36,6 +37,10 @@ const App = () => {
 
                         <Route exact path='/series'>
                             <Home type='series' />
+                        </Route>
+
+                        <Route exact path='/recommend'>
+                            <Recommend />
                         </Route>
 
                         <Route exact path='/watch'>
