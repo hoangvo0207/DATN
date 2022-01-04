@@ -1,9 +1,72 @@
+import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 import axios from 'axios';
 import React, { useRef, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { apiUrl } from '../../constants/constant';
-import './register.scss';
 import logo from '../register/logo.PNG';
+
+const useStyles = makeStyles(() => ({
+    register: {
+        width: '100vw',
+        height: '100vh',
+        backgroundColor: '#00202e',
+        position: 'relative'
+    },
+    wrapper: {
+        padding: '20px 50px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between'
+    },
+    logo: {
+        height: 100,
+        borderRadius: '50%'
+    },
+    container: {
+        width: '100%',
+        height: '100%',
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        color: 'white'
+    },
+    input: {
+        width: '50%',
+        backgroundColor: 'white',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        marginTop: 20,
+        height: 50,
+        borderRadius: 5
+    },
+    inputContent: {
+        flex: 9,
+        height: '100%',
+        border: 'none',
+        padding: '0 10px',
+        marginRight: 5
+    },
+    button: {
+        flex: 3,
+        height: '100%',
+        backgroundColor: '#365972',
+        border: 'none',
+        color: 'white',
+        fontSize: 22
+    },
+    link: {
+        marginTop: 10,
+        color: 'white',
+        textDecoration: 'none'
+    }
+}));
 
 const Register = () => {
     const [email, setEmail] = useState('');
@@ -11,6 +74,8 @@ const Register = () => {
     const [password, setPassword] = useState('');
 
     const history = useHistory();
+
+    const classes = useStyles();
 
     const emailRef = useRef();
     const usernameRef = useRef();
@@ -33,47 +98,64 @@ const Register = () => {
     };
 
     return (
-        <div className='register'>
-            <div className='top'>
-                <div className='wrapper'>
-                    <img
-                        className='logo'
-                        src={logo}
-                        alt='logo'
-                    />
-                </div>
+        <div className={classes.register}>
+            <div className={classes.wrapper}>
+                <img
+                    className={classes.logo}
+                    src={logo}
+                    alt='logo'
+                />
             </div>
 
-            <div className='container'>
-                <h1>Unlimited movie, TV shows, and more.</h1>
-                <h2>Watch anywhere. Cancel anytime.</h2>
-                <p>Ready to watch? Enter your email to create or restart your membership.</p>
+            <div className={classes.container}>
+                <Typography variant='h3'> Unlimited movie, TV shows, and more</Typography>
+                <Typography variant='h4'>Watch anywhere. Cancel anytime</Typography>
+                <Typography variant='subtitle1'>
+                    Ready to watch? Enter your email to create your account
+                </Typography>
                 {
                     !email ? (
-                        <div className='input'>
-                            <input type='email' placeholder='Email Address' ref={emailRef} />
-                            <button
-                                className='registerButton'
-                                onClick={handleRegister}
-                            >
+                        <div className={classes.input}>
+                            <input
+                                className={classes.inputContent}
+                                type='email'
+                                placeholder='Email Address'
+                                ref={emailRef}
+                            />
+
+                            <Button
+                                className={classes.button}
+                                variant='contained'
+                                onClick={handleRegister}>
                                 Register
-                            </button>
+                            </Button>
                         </div>
                     ) : (
-                        <form className='input'>
-                            <input type='username' placeholder='Username' ref={usernameRef} />
-                            <input type='password' placeholder='Password' ref={passwordRef} />
-                            <button
-                                className='registerButton'
+                        <form className={classes.input}>
+                            <input
+                                className={classes.inputContent}
+                                type='username'
+                                placeholder='Username'
+                                ref={usernameRef}
+                            />
+                            <input
+                                className={classes.inputContent}
+                                type='password'
+                                placeholder='Password'
+                                ref={passwordRef}
+                            />
+                            <Button
+                                className={classes.button}
+                                variant='contained'
                                 onClick={handleFinish}
                             >
                                 Start
-                            </button>
+                            </Button>
                         </form>
                     )
                 }
-                <Link to='/login' style={{ marginTop: 10, color: 'white', textDecoration: 'none' }}>
-                    <p>Already have account? Sign In</p>
+                <Link to='/login' className={classes.link}>
+                    <Typography variant='h6'>Already have account? Sign In</Typography>
                 </Link>
             </div>
         </div>
