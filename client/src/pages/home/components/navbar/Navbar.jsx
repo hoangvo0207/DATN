@@ -1,17 +1,75 @@
-import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
-import Notifications from '@material-ui/icons/Notifications';
-import Search from '@material-ui/icons/Search';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { logoutRequest } from '../../../../authContext/AuthAction';
 import { AuthContext } from '../../../../authContext/AuthContext';
-import './navbar.scss';
-import logo from '../navbar/logo.PNG';
 import facebook_ava from '../navbar/facebook_ava.jpg';
+import logo from '../navbar/logo.PNG';
+
+const useStyles = makeStyles(() => ({
+    navScroll: {
+        width: '100%',
+        color: 'white',
+        fontSize: 20,
+        position: 'fixed',
+        top: 0,
+        zIndex: 999,
+        backgroundColor: '#0a344a'
+    },
+    nav: {
+        width: '100%',
+        color: 'white',
+        fontSize: 20,
+        position: 'fixed',
+        top: 0,
+        zIndex: 999,
+        backgroundColor: '#365972'
+    },
+    container: {
+        padding: '0px 50px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        height: 70
+    },
+    left: {
+        display: 'flex',
+        alignItems: 'center'
+    },
+    logo: {
+        height: 60,
+        borderRadius: '50%',
+        marginTop: 5
+    },
+    right: {
+        display: 'flex',
+        alignItems: 'center'
+    },
+    ava: {
+        width: 40,
+        height: 40,
+        borderRadius: '50%',
+        marginLeft: 8
+    },
+    link: {
+        marginLeft: 5,
+        marginRight: 15,
+        color: 'white',
+        textDecoration: 'none',
+    },
+    icon: {
+        margin: '0px 15px',
+        cursor: 'pointer'
+    }
+}));
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const { dispatch } = useContext(AuthContext);
+
+    const classes = useStyles();
 
     window.onscroll = () => {
         setIsScrolled(window.pageYOffset === 0 ? false : true);
@@ -19,45 +77,39 @@ const Navbar = () => {
     };
 
     return (
-        <div className={isScrolled ? 'navbar scrolled' : 'navbar'}>
-            <div className='container'>
-                <div className='left'>
+        <div className={isScrolled ? classes.navScroll : classes.nav}>
+            <div className={classes.container}>
+                <div className={classes.left}>
                     <img
-                        style={{ height: 60, borderRadius: '50%', marginTop: 5 }}
+                        className={classes.logo}
                         src={logo}
                         alt='Logo'
                     />
-                    <Link to='/' className='link'>
+                    <Link to='/' className={classes.link}>
                         <span className='span'>Home Page</span>
                     </Link>
-                    <Link to='/series' className='link'>
+                    <Link to='/series' className={classes.link}>
                         <span className='span'>Series</span>
                     </Link>
-                    <Link to='/movies' className='link'>
+                    <Link to='/movies' className={classes.link}>
                         <span className='span'>Movies</span>
                     </Link>
-                    <Link to='/recommend' className='link'>
+                    <Link to='/recommend' className={classes.link}>
                         <span className='span'>New and Popular</span>
                     </Link>
-                    <Link to='/mylist' className='link'>
+                    <Link to='/mylist' className={classes.link}>
                         <span className='span'>My list</span>
                     </Link>
                 </div>
 
-                <div className='right'>
-                    <Search className='icon' />
-                    <span>Hi, Hoang!</span>
-                    <Notifications className='icon' />
+                <div className={classes.right}>
+                    <Typography variant='h6'>Hi, Hoang!</Typography>
                     <img
+                        className={classes.ava}
                         src={facebook_ava}
-                        alt='avatar' />
-                    <div className='profile'>
-                        <ArrowDropDown className='icon' />
-                        <div className='options'>
-                            <span>Settings</span>
-                            <span onClick={() => dispatch(logoutRequest())}>Logout</span>
-                        </div>
-                    </div>
+                        alt='avatar'
+                    />
+                    <ExitToAppIcon className={classes.icon} onClick={() => dispatch(logoutRequest())} />
                 </div>
             </div>
         </div>
