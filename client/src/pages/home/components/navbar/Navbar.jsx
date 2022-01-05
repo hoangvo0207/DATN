@@ -97,9 +97,6 @@ const Navbar = () => {
                     <Link to='/recommend' className={classes.link}>
                         <span className='span'>New and Popular</span>
                     </Link>
-                    <Link to='/mylist' className={classes.link}>
-                        <span className='span'>My list</span>
-                    </Link>
                 </div>
 
                 <div className={classes.right}>
