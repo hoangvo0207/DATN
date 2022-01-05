@@ -111,7 +111,7 @@ const Login = () => {
                         variant='contained'
                         onClick={handleLogin}
                     >
-                        Sign In
+                        Log In
                     </Button>
                     <Link to='/register' className={classes.link}>
                         <Typography align='center' variant='h6'>New Member? Sign up now.</Typography>

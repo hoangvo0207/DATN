@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
-import './app.css';
 import Sidebar from './components/sidebar/Sidebar';
 import Topbar from './components/topbar/Topbar';
 import { AuthContext } from './contexts/authContext/AuthContext';
