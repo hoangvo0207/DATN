@@ -1,14 +1,66 @@
+import { makeStyles } from '@material-ui/core/styles';
 import ArrowBackIosOutlined from '@material-ui/icons/ArrowBackIosOutlined';
 import ArrowForwardIosOutlined from '@material-ui/icons/ArrowForwardIosOutlined';
 import React, { useRef, useState } from 'react';
-import './list.scss';
 import ListItem from './ListItem';
+
+const useStyles = makeStyles(() => ({
+    list: {
+        width: '100%',
+        marginTop: 10
+    },
+    listTitle: {
+        color: 'white',
+        fontSize: 20,
+        fontWeight: 500,
+        marginLeft: 50
+    },
+    slideArrowLeft: {
+        width: 50,
+        height: '100%',
+        backgroundColor: 'rgb(22, 22, 22, 0.5)',
+        color: 'white',
+        position: 'absolute',
+        zIndex: 99,
+        top: 0,
+        bottom: 0,
+        margin: 'auto',
+        cursor: 'pointer',
+        left: 0
+    },
+    slideArrowRight: {
+        width: 50,
+        height: '100%',
+        backgroundColor: 'rgb(22, 22, 22, 0.5)',
+        color: 'white',
+        position: 'absolute',
+        zIndex: 99,
+        top: 0,
+        bottom: 0,
+        margin: 'auto',
+        cursor: 'pointer',
+        right: 0
+    },
+    wrapper: {
+        position: 'relative'
+    },
+    container: {
+        marginLeft: 50,
+        display: 'flex',
+        marginTop: 10,
+        width: 'max-content',
+        transform: 'translateX(0px)',
+        transition: 'all 1s ease'
+    }
+}));
 
 const List = (props) => {
     const { list } = props || [];
     const { content } = list || [];
     const [isMoved, setIsMoved] = useState(false);
     const [slideNumber, setSlideNumber] = useState(0);
+
+    const classes = useStyles();
 
     const listRef = useRef();
 
@@ -29,19 +81,19 @@ const List = (props) => {
     }
 
     return (
-        <div className='list'>
-            <span className='listTitle'>
+        <div className={classes.list}>
+            <span className={classes.listTitle}>
                 {list.title}
             </span>
 
-            <div className='wrapper'>
+            <div className={classes.wrapper}>
                 <ArrowBackIosOutlined
-                    className='sliderArrow left'
+                    className={classes.slideArrowLeft}
                     onClick={() => handleSlide('left')}
                     style={{ display: !isMoved && 'none' }}
                 />
 
-                <div className='container' ref={listRef}>
+                <div className={classes.container} ref={listRef}>
                     {
                         content.map((movieId, index) => (
                             <ListItem index={index} movieId={movieId} />
@@ -49,7 +101,7 @@ const List = (props) => {
                     }
                 </div>
 
-                <ArrowForwardIosOutlined className='sliderArrow right' onClick={() => handleSlide('right')} />
+                <ArrowForwardIosOutlined className={classes.slideArrowRight} onClick={() => handleSlide('right')} />
             </div>
         </div>
     );
