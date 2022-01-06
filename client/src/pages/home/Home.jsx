@@ -1,15 +1,24 @@
+import { makeStyles } from '@material-ui/core';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { apiUrl } from '../../constants/constant';
 import Featured from './components/featured/Featured';
 import List from './components/list/List';
 import Navbar from './components/navbar/Navbar';
-import './home.scss';
+
+const useStyles = makeStyles(() => ({
+    home: {
+        backgroundColor: '#00202e',
+        overflow: 'hidden'
+    }
+}));
 
 const Home = (props) => {
     const { type } = props;
     const [lists, setLists] = useState([]);
     const [genre, setGenre] = useState(null);
+
+    const classes = useStyles();
 
     useEffect(() => {
         const getRandomLists = async () => {
@@ -30,9 +39,9 @@ const Home = (props) => {
     }, [type, genre]);
 
     return (
-        <div className='home'>
+        <div className={classes.home}>
             <Navbar />
-            <Featured type={type} setGenre={setGenre} />
+            <Featured type={type} setGenre={setGenre} genre={genre} />
             {
                 lists.map((list) => (
                     <List list={list} />

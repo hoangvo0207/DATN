@@ -1,18 +1,38 @@
+import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import FormControl from '@material-ui/core/FormControl';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
+import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import InfoOutlined from '@material-ui/icons/InfoOutlined';
-import PlayArrow from '@material-ui/icons/PlayArrow';
+import AccessTimeIcon from '@material-ui/icons/AccessTime';
+import LocalOfferIcon from '@material-ui/icons/LocalOffer';
+import StartIcon from '@material-ui/icons/Star';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { apiUrl } from '../../../../constants/constant';
-import './featured.scss';
-import { makeStyles } from '@material-ui/core/styles';
-import { Button, Card, CardContent, CardMedia } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
         width: '93%',
         margin: 'auto',
+    },
+    featured: {
+        height: 125,
+        position: 'relative'
+    },
+    category: {
+        position: 'absolute',
+        top: 80,
+        left: 50,
+        fontSize: 30,
+        fontWeight: 500,
+        color: 'white',
+        display: 'flex',
+        alignItems: 'center'
     },
     details: {
         display: 'flex',
@@ -29,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         alignItems: 'center',
         paddingLeft: theme.spacing(1),
-        paddingBottom: theme.spacing(1),
+        paddingBottom: theme.spacing(6),
     },
     button: {
         display: 'flex'
@@ -39,8 +59,8 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         fontSize: 18,
         marginRight: 10,
-        marginLeft: 20,
-        marginBottom: 116,
+        marginLeft: 2,
+        marginBottom: 4,
         backgroundColor: '#0a344a',
         color: 'white'
     },
@@ -49,16 +69,25 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         fontSize: 18,
         marginRight: 10,
-        marginLeft: 10,
-        marginBottom: 116,
+        marginLeft: 2,
+        marginBottom: 4,
         backgroundColor: '#9fafbf',
         color: 'white'
+    },
+    icon: {
+        marginLeft: 30
+    },
+    formControl: {
+        position: 'absolute',
+        left: 115,
+        minWidth: 160,
+        backgroundColor: 'white',
+        borderRadius: 8
     }
 }));
 
-
 const Featured = (props) => {
-    const { type, setGenre } = props;
+    const { type, genre, setGenre } = props;
     const [featured, setFeatured] = useState({});
 
     const classes = useStyles();
@@ -82,21 +111,27 @@ const Featured = (props) => {
 
     return (
         <React.Fragment>
-            <div className='featured'>
+            <div className={classes.featured}>
                 {type && (
-                    <div className='category'>
+                    <div className={classes.category}>
                         <span>
                             {type === 'movies' ? 'Movies' : 'Series'}
                         </span>
 
-                        <select className='select' name='genre' id='genre' onChange={e => setGenre(e.target.value)}>
-                            <option>Genre</option>
-                            <option value='action'>Action and Sci-fi</option>
-                            <option value='drama'>Drama</option>
-                            <option value='horror'>Horror</option>
-                            <option value='animation'>Animation</option>
-                            <option value='comedy'>Comedy</option>
-                        </select>
+                        <FormControl className={classes.formControl}>
+                            <Select
+                                id='genre'
+                                value={genre}
+                                onChange={e => setGenre(e.target.value)}
+                                label={type}
+                            >
+                                <MenuItem value='action'>Action and Sci-fi</MenuItem>
+                                <MenuItem value='drama'>Drama</MenuItem>
+                                <MenuItem value='horror'>Horror</MenuItem>
+                                <MenuItem value='animation'>Animation</MenuItem>
+                                <MenuItem value='comedy'>Comedy</MenuItem>
+                            </Select>
+                        </FormControl>
                     </div>
                 )}
             </div>
@@ -106,7 +141,7 @@ const Featured = (props) => {
                     <CardMedia
                         className={classes.cover}
                         image='https://cf.shopee.co.id/file/8fc9e767eaf1657b5be8309ebe57760d'
-                        title="Spider Man"
+                        title='Vincenzo'
                     />
                 </div>
 
@@ -115,7 +150,7 @@ const Featured = (props) => {
                         <Typography align='center' variant='h3'>
                             Vincenzo 2021
                         </Typography>
-                        <Typography style={{marginTop: 20}} variant='subtitle1' color='textSecondary'>
+                        <Typography style={{ marginTop: 20 }} variant='subtitle1' color='textSecondary'>
                             Vincenzo Cassano is a Korean who was adopted as a child by an Italian family.
                             He possesses unparalleled charisma and excellent negotiation skills,
                             his only purpose is to take revenge in the name of the Italian Mafia boss.
@@ -126,6 +161,14 @@ const Featured = (props) => {
                             According to the producer, the budget for each Vincenzo episode is up to 4 billion VND (about 200 million won).
                         </Typography>
                     </CardContent>
+
+                    <div className={classes.controls}>
+                        {
+                            [1, 2, 3, 4, 5].map(() => <StartIcon />)
+                        }
+                        <LocalOfferIcon className={classes.icon} /> Drama
+                        <AccessTimeIcon className={classes.icon} /> 2021/12/08
+                    </div>
 
                     <div className={classes.controls}>
                         <Button className={classes.play} variant='contained'>

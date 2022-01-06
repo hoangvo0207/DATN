@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import {
     BrowserRouter as Router, Redirect, Route, Switch
 } from 'react-router-dom';
-import './app.scss';
 import { AuthContext } from './authContext/AuthContext';
 import ListItemDetail from './pages/home/components/list/ListItemDetail';
 import Home from './pages/home/Home';
