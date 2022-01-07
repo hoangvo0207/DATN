@@ -1,5 +1,6 @@
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import axios from 'axios';
 import React, { useRef, useState } from 'react';
@@ -43,15 +44,12 @@ const useStyles = makeStyles(() => ({
         alignItems: 'center',
         justifyContent: 'space-between',
         marginTop: 20,
-        height: 50,
         borderRadius: 5
     },
     inputContent: {
         flex: 9,
         height: '100%',
-        border: 'none',
-        padding: '0 10px',
-        marginRight: 5
+        border: 'none'
     },
     button: {
         flex: 3,
@@ -72,6 +70,7 @@ const Register = () => {
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
 
     const history = useHistory();
 
@@ -80,6 +79,14 @@ const Register = () => {
     const emailRef = useRef();
     const usernameRef = useRef();
     const passwordRef = useRef();
+
+    const handleClickShowPassword = () => {
+        setShowPassword(!showPassword);
+    };
+
+    const handleMouseDownPassword = (event) => {
+        event.preventDefault();
+    };
 
     const handleRegister = () => {
         setEmail(emailRef.current.value);
@@ -132,17 +139,22 @@ const Register = () => {
                         </div>
                     ) : (
                         <form className={classes.input}>
-                            <input
+                            <TextField
+                                name='username'
+                                variant='outlined'
                                 className={classes.inputContent}
-                                type='username'
                                 placeholder='Username'
                                 ref={usernameRef}
+                                onChange={(e) => setUsername(e.target.value)}
                             />
-                            <input
-                                className={classes.inputContent}
+                            <TextField
+                                name='password'
                                 type='password'
+                                variant='outlined'
+                                className={classes.inputContent}
                                 placeholder='Password'
                                 ref={passwordRef}
+                                onChange={(e) => setPassword(e.target.value)}
                             />
                             <Button
                                 className={classes.button}

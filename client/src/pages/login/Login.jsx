@@ -1,5 +1,6 @@
-import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -47,14 +48,11 @@ const useStyles = makeStyles(() => ({
         justifyContent: 'space-around'
     },
     input: {
-        height: 40,
         borderRadius: 5,
         backgroundColor: 'white',
         color: 'black',
-        paddingLeft: 10
     },
     button: {
-        height: 40,
         borderRadius: 5,
         backgroundColor: '#0a344a',
         border: 'none',
@@ -94,15 +92,18 @@ const Login = () => {
             <div className={classes.container}>
                 <form className={classes.form}>
                     <Typography align='center' variant='h3'>Sign In</Typography>
-                    <input
+                    <TextField
+                        name='email'
+                        variant='outlined'
                         className={classes.input}
-                        type='email'
-                        placeholder='Email or phone number'
+                        placeholder='Email or Phone Number'
                         onChange={(e) => setEmail(e.target.value)}
                     />
-                    <input
-                        className={classes.input}
+                    <TextField
+                        name='password'
                         type='password'
+                        variant='outlined'
+                        className={classes.input}
                         placeholder='Password'
                         onChange={(e) => setPassword(e.target.value)}
                     />
