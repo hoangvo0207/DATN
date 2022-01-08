@@ -136,7 +136,7 @@ const Featured = (props) => {
                 )}
             </div>
 
-            <Card className={classes.root}>
+            <Card elevation={16} className={classes.root}>
                 <div>
                     <CardMedia
                         className={classes.cover}
