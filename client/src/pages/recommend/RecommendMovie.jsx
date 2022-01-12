@@ -7,9 +7,13 @@ import Typography from '@material-ui/core/Typography';
 import React from 'react';
 
 const useStyles = makeStyles(() => ({
-    card: {
-        height: 400,
-        backgroundColor: '#00202e',
+    root: {
+        width: 225,
+        height: 312,
+        marginRight: 20,
+        backgroundColor: '#0a344a'
+    },
+    content: {
         color: 'white'
     }
 }));
@@ -20,27 +24,21 @@ const RecommendMovie = (props) => {
     const classes = useStyles();
 
     return (
-        <Card className={classes.card}>
+        <Card elevation={16} className={classes.root}>
             <CardActionArea>
                 <CardMedia
                     component='img'
                     alt='movie-image'
-                    height='300'
+                    height='200'
                     image={recommend.image}
                     title='Movie Image'
                 />
-                <CardContent>
+                <CardContent className={classes.content}>
                     <Typography gutterBottom variant='h6' component='h2'>
                         {recommend.title}
                     </Typography>
                 </CardContent>
             </CardActionArea>
-
-            {/* <CardActions>
-                <Button size='small' color='primary'>
-                    Detail
-                </Button>
-            </CardActions> */}
         </Card>
     );
 };

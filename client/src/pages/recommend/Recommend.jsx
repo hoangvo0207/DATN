@@ -6,7 +6,6 @@ import { apiUrl } from '../../constants/constant';
 import Featured from '../home/components/featured/Featured';
 import Navbar from '../home/components/navbar/Navbar';
 import RecommendMovie from './RecommendMovie';
-import './recommend.scss';
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -14,6 +13,10 @@ const useStyles = makeStyles(() => ({
         marginLeft: 20,
         marginRight: 20,
         marginTop: 20,
+    },
+    recommend: {
+        backgroundColor: '#00202e',
+        overflow: 'hidden'
     }
 }));
 
@@ -42,7 +45,7 @@ const Recommend = () => {
 
     return (
         <React.Fragment>
-            <div className='recommend'>
+            <div className={classes.recommend}>
                 <Navbar />
                 <Featured />
                 <div className={classes.root}>
