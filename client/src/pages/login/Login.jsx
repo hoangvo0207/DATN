@@ -41,7 +41,7 @@ const useStyles = makeStyles(() => ({
         width: 350,
         height: 500,
         padding: 30,
-        borderRadius: 5,
+        borderRadius: 10,
         backgroundColor: '#5e778f',
         display: 'flex',
         flexDirection: 'column',

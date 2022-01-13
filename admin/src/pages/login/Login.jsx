@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, TextField } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import React, { useContext, useState } from 'react';
@@ -10,7 +10,7 @@ const useStyles = makeStyles(() => ({
     login: {
         width: '100vw',
         height: '100vh',
-        backgroundColor: '#00202e',
+        backgroundColor: '#310A0B',
         position: 'relative'
     },
     wrapper: {
@@ -39,23 +39,21 @@ const useStyles = makeStyles(() => ({
         width: 300,
         height: 400,
         padding: 30,
-        borderRadius: 5,
-        backgroundColor: '#5e778f',
+        borderRadius: 10,
+        backgroundColor: '#743A36',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-around'
     },
     input: {
-        height: 40,
         borderRadius: 5,
         backgroundColor: 'white',
         color: 'black',
-        paddingLeft: 10
     },
     button: {
-        height: 40,
+        height: 48,
         borderRadius: 5,
-        backgroundColor: '#0a344a',
+        backgroundColor: '#310A0B',
         border: 'none',
         color: 'white',
         fontSize: 22
@@ -86,15 +84,18 @@ const Login = () => {
             <div className={classes.container}>
                 <form className={classes.form}>
                     <Typography align='center' variant='h3'>Welcome, Admin!</Typography>
-                    <input
+                    <TextField
+                        name='email'
+                        variant='outlined'
                         className={classes.input}
-                        type='text'
-                        placeholder='Email'
+                        placeholder='Email or Phone Number'
                         onChange={(e) => setEmail(e.target.value)}
                     />
-                    <input
-                        className={classes.input}
+                    <TextField
+                        name='password'
                         type='password'
+                        variant='outlined'
+                        className={classes.input}
                         placeholder='Password'
                         onChange={(e) => setPassword(e.target.value)}
                     />

@@ -1,19 +1,31 @@
-import './chart.scss';
+import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 import {
-  LineChart,
-  Line,
-  XAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
+  CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis
 } from 'recharts';
+
+const useStyles = makeStyles(() => ({
+  chart: {
+    padding: 20,
+    borderRadius: 10,
+    WebkitBoxShadow: '0px 0px 15px -10px rgba(0, 0, 0, 0.75)',
+    boxShadow: '0px 0px 15px -10px rgba(0, 0, 0, 0.75)',
+    backgroundColor: 'white',
+
+  },
+  chartTitle: {
+    marginBottom: 20
+  }
+}));
 
 const Chart = (props) => {
   const { title, data, dataKey, grid } = props;
 
+  const classes = useStyles();
+
   return (
-    <div className='chart'>
-      <h3 className='chartTitle'>{title}</h3>
+    <div className={classes.chart}>
+      <Typography variant='h5' className={classes.chartTitle}>{title}</Typography>
 
       <ResponsiveContainer width='100%' aspect={4 / 1}>
         <LineChart data={data}>

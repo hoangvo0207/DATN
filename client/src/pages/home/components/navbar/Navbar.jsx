@@ -58,6 +58,7 @@ const useStyles = makeStyles(() => ({
         marginRight: 15,
         color: 'white',
         textDecoration: 'none',
+        fontFamily: 'arial'
     },
     icon: {
         margin: '0px 15px',

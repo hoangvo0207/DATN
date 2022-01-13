@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
-import Sidebar from './components/sidebar/Sidebar';
 import Topbar from './components/topbar/Topbar';
 import { AuthContext } from './contexts/authContext/AuthContext';
 import Home from './pages/home/Home';
@@ -25,10 +24,7 @@ const App = () => {
           {user ? (
             <React.Fragment>
               <Topbar />
-              <div className='container'>
-                <Sidebar />
-                <Home />
-              </div>
+              <Home />
             </React.Fragment>
           ) : <Redirect to='/login' />
           }
@@ -41,39 +37,36 @@ const App = () => {
         {user ? (
           <React.Fragment>
             <Topbar />
-            <div className='container'>
-              <Sidebar />
-              <Route exact path='/'>
-                <Home />
-              </Route>
-              <Route exact path='/users'>
-                <UserList />
-              </Route>
-              <Route path='/users/:userId'>
-                <User />
-              </Route>
-              <Route path='/newUser'>
-                <NewUser />
-              </Route>
-              <Route exact path='/movies'>
-                <MovieList />
-              </Route>
-              <Route path='/movies/:movieId'>
-                <Movie />
-              </Route>
-              <Route path='/newMovie'>
-                <NewMovie />
-              </Route>
-              <Route exact path='/lists'>
-                <List />
-              </Route>
-              <Route path='/lists/:listId'>
-                <ListItem />
-              </Route>
-              <Route path='/newList'>
-                <NewList />
-              </Route>
-            </div>
+            <Route exact path='/'>
+              <Home />
+            </Route>
+            <Route exact path='/users'>
+              <UserList />
+            </Route>
+            <Route path='/users/:userId'>
+              <User />
+            </Route>
+            <Route path='/newUser'>
+              <NewUser />
+            </Route>
+            <Route exact path='/movies'>
+              <MovieList />
+            </Route>
+            <Route path='/movies/:movieId'>
+              <Movie />
+            </Route>
+            <Route path='/newMovie'>
+              <NewMovie />
+            </Route>
+            <Route exact path='/lists'>
+              <List />
+            </Route>
+            <Route path='/lists/:listId'>
+              <ListItem />
+            </Route>
+            <Route path='/newList'>
+              <NewList />
+            </Route>
           </React.Fragment>
         ) : <Redirect to='/login' />}
       </Switch>
