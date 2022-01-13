@@ -10,7 +10,6 @@ import Movie from './pages/movie/Movie';
 import MovieList from './pages/movieList/MovieList';
 import NewList from './pages/newList/NewList';
 import NewMovie from './pages/newMovie/NewMovie';
-import NewUser from './pages/newUser/NewUser';
 import User from './pages/user/User';
 import UserList from './pages/userList/UserList';
 
@@ -45,9 +44,6 @@ const App = () => {
             </Route>
             <Route path='/users/:userId'>
               <User />
-            </Route>
-            <Route path='/newUser'>
-              <NewUser />
             </Route>
             <Route exact path='/movies'>
               <MovieList />

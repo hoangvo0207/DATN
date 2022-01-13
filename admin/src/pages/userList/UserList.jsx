@@ -1,5 +1,6 @@
 import { green } from '@material-ui/core/colors';
 import IconButton from '@material-ui/core/IconButton';
+import { makeStyles } from '@material-ui/core/styles';
 import { DataGrid } from '@material-ui/data-grid';
 import DeleteOutline from '@material-ui/icons/DeleteOutline';
 import EditIcon from '@material-ui/icons/Edit';
@@ -7,12 +8,32 @@ import React, { useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { deleteUser, getUsers } from '../../contexts/userContext/apiCall';
 import { UserContext } from '../../contexts/userContext/UserContext';
-import './userList.scss';
+
+const useStyles = makeStyles(() => ({
+  user: {
+    flex: 4,
+    marginTop: 80,
+    height: 625
+  },
+  userImg: {
+    width: 32,
+    height: 32,
+    borderRadius: '50%',
+    objectFit: 'cover',
+    marginRight: 10
+  },
+  userDelete: {
+    color: 'red',
+    cursor: 'pointer'
+  }
+}));
 
 const UserList = () => {
   const { users, findUser, dispatch } = useContext(UserContext);
 
   const history = useHistory();
+
+  const classes = useStyles();
 
   useEffect(() => {
     getUsers(dispatch);
@@ -35,7 +56,7 @@ const UserList = () => {
       width: 200,
       renderCell: (params) => {
         return (
-          <img className='userImg' src={params.row.profilePic} alt='' />
+          <img className={classes.userImg} src={params.row.profilePic} alt='' />
         );
       }
     },
@@ -53,7 +74,7 @@ const UserList = () => {
               <EditIcon style={{ color: green[500] }} />
             </IconButton>
             <DeleteOutline
-              className='userDelete'
+              className={classes.userDelete}
               onClick={() => handleDelete(params.row._id)}
             />
           </React.Fragment>
@@ -63,7 +84,7 @@ const UserList = () => {
   ];
 
   return (
-    <div className='user'>
+    <div className={classes.user}>
       <DataGrid
         rows={users}
         disableSelectionOnClick
