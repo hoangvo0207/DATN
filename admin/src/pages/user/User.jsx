@@ -128,7 +128,7 @@ const User = () => {
               <Typography variant='body1'>Username</Typography>
               <TextField
                 name='username'
-                variant='filled'
+                variant='outlined'
                 fullWidth
                 className={classes.textField}
                 value={updatedUser.username}
@@ -140,7 +140,7 @@ const User = () => {
               <Typography variant='body1'>Email</Typography>
               <TextField
                 name='email'
-                variant='filled'
+                variant='outlined'
                 fullWidth
                 className={classes.textField}
                 value={updatedUser.email}
@@ -152,7 +152,7 @@ const User = () => {
               <Typography variant='body1'>Profile Picture</Typography>
               <TextField
                 name='profilePic'
-                variant='filled'
+                variant='outlined'
                 fullWidth
                 className={classes.textField}
                 value={updatedUser.profilePic}
@@ -164,7 +164,7 @@ const User = () => {
               <Typography variant='body1'>Admin</Typography>
               <TextField
                 name='isAdmin'
-                variant='filled'
+                variant='outlined'
                 fullWidth
                 disabled
                 className={classes.textField}

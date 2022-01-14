@@ -1,6 +1,7 @@
 import Button from '@material-ui/core/Button';
 import { green } from '@material-ui/core/colors';
 import IconButton from '@material-ui/core/IconButton';
+import { makeStyles } from '@material-ui/core/styles';
 import { DataGrid } from '@material-ui/data-grid';
 import DeleteOutline from '@material-ui/icons/DeleteOutline';
 import EditIcon from '@material-ui/icons/Edit';
@@ -8,12 +9,36 @@ import React, { useContext, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { deleteList, getLists } from '../../contexts/listContext/apiCall';
 import { ListContext } from '../../contexts/listContext/ListContext';
-import './list.scss';
+
+const useStyles = makeStyles(() => ({
+  list: {
+    flex: 4,
+    marginTop: 80,
+    height: 625
+  },
+  link: {
+    textDecoration: 'none'
+  },
+  listDelete: {
+    color: 'red',
+    cursor: 'pointer'
+  },
+  button: {
+    borderRadius: 10,
+    backgroundColor: '#b96a59',
+    width: 150,
+    height: 50,
+    color: 'white',
+    marginBottom: 10
+  }
+}));
 
 const List = () => {
   const { lists, findList, dispatch } = useContext(ListContext);
 
   const history = useHistory();
+
+  const classes = useStyles();
 
   useEffect(() => {
     getLists(dispatch);
@@ -44,7 +69,7 @@ const List = () => {
               <EditIcon style={{ color: green[500] }} />
             </IconButton>
             <DeleteOutline
-              className='listDelete'
+              className={classes.listDelete}
               onClick={() => handleDelete(params.row._id)}
             />
           </React.Fragment>
@@ -54,9 +79,9 @@ const List = () => {
   ];
 
   return (
-    <div className='list'>
-      <Link to='/newList' style={{ textDecoration: 'none' }}>
-        <Button className='createButton' variant='contained' color='primary'>
+    <div className={classes.list}>
+      <Link to='/newList' className={classes.link}>
+        <Button className={classes.button} variant='contained'>
           Create
         </Button>
       </Link>
