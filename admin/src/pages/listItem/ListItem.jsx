@@ -57,7 +57,8 @@ const useStyles = makeStyles(() => ({
         borderRadius: 10,
         backgroundColor: '#b96a59',
         width: 150,
-        height: 50
+        height: 50,
+        color: 'white'
     }
 }));
 
@@ -162,7 +163,6 @@ const ListItem = () => {
 
                         <Button
                             variant='contained'
-                            color='primary'
                             className={classes.button}
                             onClick={handleSubmit}
                         >

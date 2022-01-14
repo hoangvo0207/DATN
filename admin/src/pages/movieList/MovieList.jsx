@@ -1,6 +1,7 @@
 import Button from '@material-ui/core/Button';
 import { green } from '@material-ui/core/colors';
 import IconButton from '@material-ui/core/IconButton';
+import { makeStyles } from '@material-ui/core/styles';
 import { DataGrid } from '@material-ui/data-grid';
 import DeleteOutline from '@material-ui/icons/DeleteOutline';
 import EditIcon from '@material-ui/icons/Edit';
@@ -8,12 +9,44 @@ import React, { useContext, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { deleteMovie, getMovies } from '../../contexts/movieContext/apiCall';
 import { MovieContext } from '../../contexts/movieContext/MovieContext';
-import './movieList.scss';
+
+const useStyles = makeStyles(() => ({
+  movieList: {
+    flex: 4,
+    marginTop: 80,
+    height: 625
+  },
+  movieListImg: {
+    width: 32,
+    height: 32,
+    borderRadius: '50%',
+    objectFit: 'cover',
+    marginRight: 10,
+    marginTop: 20
+  },
+  movieListDelete: {
+    color: 'red',
+    cursor: 'pointer'
+  },
+  link: {
+    textDecoration: 'none'
+  },
+  button: {
+    borderRadius: 10,
+    backgroundColor: '#b96a59',
+    width: 150,
+    height: 50,
+    color: 'white',
+    marginBottom: 10
+  }
+}));
 
 const MovieList = () => {
   const { movies, findMovie, dispatch } = useContext(MovieContext);
 
   const history = useHistory();
+
+  const classes = useStyles();
 
   useEffect(() => {
     getMovies(dispatch);
@@ -36,8 +69,8 @@ const MovieList = () => {
       width: 420,
       renderCell: (params) => {
         return (
-          <div className='movieListItem'>
-            <img className='movieListImg' src={params.row.img} alt='' />
+          <div>
+            <img className={classes.movieListImg} src={params.row.img} alt='' />
             {params.row.title}
           </div>
         );
@@ -57,7 +90,7 @@ const MovieList = () => {
               <EditIcon style={{ color: green[500] }} />
             </IconButton>
             <DeleteOutline
-              className='movieListDelete'
+              className={classes.movieListDelete}
               onClick={() => handleDelete(params.row._id)}
             />
           </React.Fragment>
@@ -67,9 +100,9 @@ const MovieList = () => {
   ];
 
   return (
-    <div className='movieList'>
-      <Link to='/newMovie' style={{ textDecoration: 'none' }}>
-        <Button className='createButton' variant='contained' color='primary'>
+    <div className={classes.movieList}>
+      <Link to='/newMovie' className={classes.link}>
+        <Button className={classes.button} variant='contained'>
           Create
         </Button>
       </Link>

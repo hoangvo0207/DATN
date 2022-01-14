@@ -1,20 +1,76 @@
-import { Button, Grid, Paper, TextField, Typography } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
+import FormControl from '@material-ui/core/FormControl';
+import Grid from '@material-ui/core/Grid';
+import MenuItem from '@material-ui/core/MenuItem';
+import Paper from '@material-ui/core/Paper';
+import Select from '@material-ui/core/Select';
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
 import { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { createMovie } from '../../contexts/movieContext/apiCall';
 import { MovieContext } from '../../contexts/movieContext/MovieContext';
-import './newMovie.scss';
+
+const useStyles = makeStyles(() => ({
+  newMovie: {
+    flex: 4,
+    padding: 20
+  },
+  movieTitle: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    display: 'flex'
+  },
+  paper: {
+    width: '100%',
+    marginLeft: 5,
+    marginTop: 20,
+    backgroundColor: '#491b1d',
+    color: 'white',
+    borderRadius: 10
+  },
+  addMovieItem: {
+    display: 'flex',
+    flexDirection: 'column',
+    padding: 20
+  },
+  textField: {
+    backgroundColor: 'white',
+    borderRadius: 10
+  },
+  formControl: {
+    backgroundColor: 'white',
+    borderRadius: 10
+  },
+  button: {
+    margin: '10px 0px 20px 20px',
+    borderRadius: 10,
+    backgroundColor: '#b96a59',
+    width: 150,
+    height: 50,
+    color: 'white'
+  }
+}));
 
 const NewMovie = () => {
   const [movie, setMovie] = useState(null);
+  const [series, setSeries] = useState(null);
 
   const { dispatch } = useContext(MovieContext);
 
   const history = useHistory();
 
+  const classes = useStyles();
+
   const handleChange = (e) => {
     const value = e.target.value;
     setMovie({ ...movie, [e.target.name]: value });
+  }
+
+  const handleSeries = (e) => {
+    const value = e.target.value;
+    setSeries(value);
   }
 
   const handleSubmit = (e) => {
@@ -24,118 +80,136 @@ const NewMovie = () => {
   }
 
   return (
-    <Grid container spacing={3} className='newMovie'>
+    <Grid container spacing={3} className={classes.newMovie}>
       <Grid item xs={12}>
-        <Typography variant='h4' className='title'>
+        <Typography variant='h4' className={classes.movieTitle}>
           New Movie
         </Typography>
 
-        <Paper elevation={5} style={{ width: '100%', marginLeft: 5, marginTop: 20 }}>
+        <Paper elevation={5} className={classes.paper}>
           <form>
-            <div className='addMovieItem'>
-              <label>Title</label>
+            <div className={classes.addMovieItem}>
+              <Typography variant='body1'>Title</Typography>
               <TextField
                 name='title'
                 variant='outlined'
                 fullWidth
+                className={classes.textField}
                 onChange={handleChange}
               />
             </div>
 
-            <div className='addMovieItem'>
-              <label>Description</label>
+            <div className={classes.addMovieItem}>
+              <Typography variant='body1'>Description</Typography>
               <TextField
                 name='desc'
                 variant='outlined'
                 fullWidth
+                className={classes.textField}
                 onChange={handleChange}
               />
             </div>
 
-            <div className='addMovieItem'>
-              <label>Image</label>
+            <div className={classes.addMovieItem}>
+              <Typography variant='body1'>Image</Typography>
               <TextField
                 name='img'
                 variant='outlined'
                 fullWidth
+                className={classes.textField}
                 onChange={handleChange}
               />
             </div>
 
-            <div className='addMovieItem'>
-              <label>Title Image</label>
+            <div className={classes.addMovieItem}>
+              <Typography variant='body1'>Title Image</Typography>
               <TextField
                 name='imgTitle'
                 variant='outlined'
                 fullWidth
+                className={classes.textField}
                 onChange={handleChange}
               />
             </div>
 
-            <div className='addMovieItem'>
-              <label>Thumbnail Image</label>
+            <div className={classes.addMovieItem}>
+              <Typography variant='body1'>Thumbnail Image</Typography>
               <TextField
                 name='imgSm'
                 variant='outlined'
                 fullWidth
+                className={classes.textField}
                 onChange={handleChange}
               />
             </div>
 
-            <div className='addMovieItem'>
-              <label>Year</label>
+            <div className={classes.addMovieItem}>
+              <Typography variant='body1'>Year</Typography>
               <TextField
                 name='year'
                 variant='outlined'
                 fullWidth
+                className={classes.textField}
                 onChange={handleChange}
               />
             </div>
 
-            <div className='addMovieItem'>
-              <label>Limit</label>
+            <div className={classes.addMovieItem}>
+              <Typography variant='body1'>Limit</Typography>
               <TextField
                 name='limit'
                 variant='outlined'
                 fullWidth
+                className={classes.textField}
                 onChange={handleChange}
               />
             </div>
 
-            <div className='addMovieItem'>
-              <label>Genre</label>
+            <div className={classes.addMovieItem}>
+              <Typography variant='body1'>Genre</Typography>
               <TextField
                 name='genre'
                 variant='outlined'
                 fullWidth
+                className={classes.textField}
                 onChange={handleChange}
               />
             </div>
 
-            <div className='addMovieItem'>
-              <label>Is Series?</label>
-              <select name='isSeries' id='isSeries'>
-                <option value='false'>No</option>
-                <option value='true'>Yes</option>
-              </select>
+            <div className={classes.addMovieItem}>
+              <Typography variant='body1'>Is Series?</Typography>
+              <FormControl className={classes.formControl}>
+                <Select
+                  id='isSeries'
+                  name='isSeries'
+                  variant='outlined'
+                  value={series}
+                  onChange={handleSeries}
+                >
+                  <MenuItem value='false'>No</MenuItem>
+                  <MenuItem value='true'>Yes</MenuItem>
+                </Select>
+              </FormControl>
             </div>
 
-            <div className='addMovieItem'>
-              <label>Trailer</label>
+            <div className={classes.addMovieItem}>
+              <Typography variant='body1'>Trailer</Typography>
               <TextField
                 name='trailer'
                 variant='outlined'
                 fullWidth
+                className={classes.textField}
                 onChange={handleChange}
               />
             </div>
 
-            <div className='addMovieItem'>
-              <label>Video</label>
+            <div className={classes.addMovieItem}>
+              <Typography variant='body1'>Video</Typography>
               <TextField
                 name='video'
                 variant='outlined'
                 fullWidth
+                className={classes.textField}
                 onChange={handleChange}
               />
             </div>
@@ -143,9 +217,8 @@ const NewMovie = () => {
             <Button
               variant='contained'
               color='primary'
-              className='button'
+              className={classes.button}
               onClick={handleSubmit}
-              style={{ marginLeft: 20, marginBottom: 20 }}
             >
               Submit
             </Button>

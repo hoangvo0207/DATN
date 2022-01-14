@@ -1,16 +1,66 @@
-import { TextField } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { updateMovie } from '../../contexts/movieContext/apiCall';
 import { MovieContext } from '../../contexts/movieContext/MovieContext';
-import './movie.scss';
+
+const useStyles = makeStyles(() => ({
+    movieItem: {
+        flex: 4,
+        padding: 20
+    },
+    movieTitle: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        display: 'flex'
+    },
+    addMovieItem: {
+        display: 'flex',
+        flexDirection: 'column',
+        padding: 20
+    },
+    cardRoot: {
+        display: 'flex',
+        marginTop: 20,
+        borderRadius: 10
+    },
+    cardDetail: {
+        display: 'flex',
+    },
+    cardContent: {
+        flex: '1 0 auto',
+    },
+    cardForm: {
+        display: 'block',
+        marginTop: 20,
+        borderRadius: 10,
+        backgroundColor: '#491b1d',
+        color: 'white'
+    },
+    media: {
+        width: 250,
+        height: 250
+    },
+    textField: {
+        backgroundColor: 'white',
+        borderRadius: 10
+    },
+    button: {
+        margin: '10px 0px 20px 20px',
+        borderRadius: 10,
+        backgroundColor: '#b96a59',
+        width: 150,
+        height: 50,
+        color: 'white'
+    }
+}));
 
 const Movie = () => {
     const { movie, dispatch } = useContext(MovieContext);
@@ -18,6 +68,8 @@ const Movie = () => {
     const [updatedMovie, setUpdatedMovie] = useState(movie);
 
     const history = useHistory();
+
+    const classes = useStyles();
 
     const handleChange = (e) => {
         setUpdatedMovie({
@@ -37,165 +89,169 @@ const Movie = () => {
     }
 
     return (
-        <Grid container spacing={3} className='movie'>
+        <Grid container spacing={3} className={classes.movieItem}>
             <Grid item xs={12}>
-                <Typography variant='h4' className='movieTitle'>
+                <Typography variant='h4' className={classes.movieTitle}>
                     Update List
                 </Typography>
 
-                <Paper elevation={10} style={{ width: '100%', height: '90%', marginLeft: 5, marginTop: 20 }}>
-                    <Paper elevation={3}>
-                        <Card className='cardRoot'>
-                            <CardMedia
-                                className='media'
-                                image={updatedMovie.img}
-                                title='marvel'
+                <Card className={classes.cardRoot}>
+                    <CardMedia
+                        className={classes.media}
+                        image={updatedMovie.img}
+                        title='movie-image'
+                    />
+                    <div className={classes.cardDetail}>
+                        <CardContent className={classes.cardContent}>
+                            <Typography component='h5' variant='h5'>
+                                {updatedMovie.title}
+                            </Typography>
+                            <Typography component='subtitle1' variant='subtitle1'>
+                                Id: {updatedMovie._id}
+                            </Typography>
+                            <Typography component='subtitle1' variant='subtitle1'>
+                                Genre: {updatedMovie.genre}
+                            </Typography>
+                            <Typography component='subtitle1' variant='subtitle1'>
+                                Year: {updatedMovie.year}
+                            </Typography>
+                            <Typography component='subtitle1' variant='subtitle1'>
+                                Limit: {updatedMovie.limit}
+                            </Typography>
+                        </CardContent>
+                    </div>
+                </Card>
+
+                <Card elevation={10} className={classes.cardForm}>
+                    <form>
+                        <div className={classes.addMovieItem}>
+                            <Typography variant='body1'>Title</Typography>
+                            <TextField
+                                name='title'
+                                variant='outlined'
+                                fullWidth
+                                className={classes.textField}
+                                value={updatedMovie.title}
+                                onChange={handleChange}
                             />
-                            <div className='cardDetail'>
-                                <CardContent className='cardContent'>
-                                    <Typography component='h5' variant='h5'>
-                                        {updatedMovie.title}
-                                    </Typography>
-                                    <Typography component='subtitle1' variant='subtitle1'>
-                                        Id: {updatedMovie._id}
-                                    </Typography>
-                                    <Typography component='subtitle1' variant='subtitle1'>
-                                        Genre: {updatedMovie.genre}
-                                    </Typography>
-                                    <Typography component='subtitle1' variant='subtitle1'>
-                                        Year: {updatedMovie.year}
-                                    </Typography>
-                                    <Typography component='subtitle1' variant='subtitle1'>
-                                        Limit: {updatedMovie.limit}
-                                    </Typography>
-                                </CardContent>
-                            </div>
-                        </Card>
-                    </Paper>
+                        </div>
 
-                    <Paper elevation={10} style={{ marginTop: 80 }}>
-                        <form>
-                            <div className='addMovieItem'>
-                                <label>Title</label>
-                                <TextField
-                                    name='title'
-                                    variant='outlined'
-                                    fullWidth
-                                    value={updatedMovie.title}
-                                    onChange={handleChange}
-                                />
-                            </div>
+                        <div className={classes.addMovieItem} >
+                            <Typography variant='body1'>Description</Typography>
+                            <TextField
+                                name='desc'
+                                variant='outlined'
+                                fullWidth
+                                className={classes.textField}
+                                value={updatedMovie.desc}
+                                onChange={handleChange}
+                            />
+                        </div>
 
-                            <div className='addMovieItem' >
-                                <label>Description</label>
-                                <TextField
-                                    name='desc'
-                                    variant='outlined'
-                                    fullWidth
-                                    value={updatedMovie.desc}
-                                    onChange={handleChange}
-                                />
-                            </div>
+                        <div className={classes.addMovieItem} >
+                            <Typography variant='body1'>Image</Typography>
+                            <TextField
+                                name='img'
+                                variant='outlined'
+                                fullWidth
+                                className={classes.textField}
+                                value={updatedMovie.img}
+                                onChange={handleChange}
+                            />
+                        </div>
 
-                            <div className='addMovieItem' >
-                                <label>Image</label>
-                                <TextField
-                                    name='img'
-                                    variant='outlined'
-                                    fullWidth
-                                    value={updatedMovie.img}
-                                    onChange={handleChange}
-                                />
-                            </div>
+                        <div className={classes.addMovieItem} >
+                            <Typography variant='body1'>Title Image</Typography>
+                            <TextField
+                                name='imgTitle'
+                                variant='outlined'
+                                fullWidth
+                                className={classes.textField}
+                                value={updatedMovie.imgTitle}
+                                onChange={handleChange}
+                            />
+                        </div>
 
-                            <div className='addMovieItem' >
-                                <label>Titile Image</label>
-                                <TextField
-                                    name='imgTitle'
-                                    variant='outlined'
-                                    fullWidth
-                                    value={updatedMovie.imgTitle}
-                                    onChange={handleChange}
-                                />
-                            </div>
+                        <div className={classes.addMovieItem} >
+                            <Typography variant='body1'>Thumbnail Image</Typography>
+                            <TextField
+                                name='imgSm'
+                                variant='outlined'
+                                fullWidth
+                                className={classes.textField}
+                                value={updatedMovie.imgSm}
+                                onChange={handleChange}
+                            />
+                        </div>
 
-                            <div className='addMovieItem' >
-                                <label>Thumbnail Image</label>
-                                <TextField
-                                    name='imgSm'
-                                    variant='outlined'
-                                    fullWidth
-                                    value={updatedMovie.imgSm}
-                                    onChange={handleChange}
-                                />
-                            </div>
+                        <div className={classes.addMovieItem} >
+                            <Typography variant='body1'>Year</Typography>
+                            <TextField
+                                name='year'
+                                variant='outlined'
+                                fullWidth
+                                className={classes.textField}
+                                value={updatedMovie.year}
+                                onChange={handleChange}
+                            />
+                        </div>
 
-                            <div className='addMovieItem' >
-                                <label>Year</label>
-                                <TextField
-                                    name='year'
-                                    variant='outlined'
-                                    fullWidth
-                                    value={updatedMovie.year}
-                                    onChange={handleChange}
-                                />
-                            </div>
+                        <div className={classes.addMovieItem} >
+                            <Typography variant='body1'>Limit</Typography>
+                            <TextField
+                                name='limit'
+                                variant='outlined'
+                                fullWidth
+                                className={classes.textField}
+                                value={updatedMovie.limit}
+                                onChange={handleChange}
+                            />
+                        </div>
 
-                            <div className='addMovieItem' >
-                                <label>Limit</label>
-                                <TextField
-                                    name='limit'
-                                    variant='outlined'
-                                    fullWidth
-                                    value={updatedMovie.limit}
-                                    onChange={handleChange}
-                                />
-                            </div>
+                        <div className={classes.addMovieItem} >
+                            <Typography variant='body1'>Is Series</Typography>
+                            <TextField
+                                name='isSeried'
+                                variant='outlined'
+                                fullWidth
+                                className={classes.textField}
+                                value={updatedMovie.isSeried ? 'Series' : 'Movies'}
+                            />
+                        </div>
 
-                            <div className='addMovieItem' >
-                                <label>Is Series</label>
-                                <TextField
-                                    name='isSeried'
-                                    variant='outlined'
-                                    fullWidth
-                                    value={updatedMovie.isSeried ? 'Series' : 'Movies'}
-                                />
-                            </div>
+                        <div className={classes.addMovieItem} >
+                            <Typography variant='body1'>Genre</Typography>
+                            <TextField
+                                name='genre'
+                                variant='outlined'
+                                fullWidth
+                                className={classes.textField}
+                                value={updatedMovie.genre}
+                                onChange={handleChange}
+                            />
+                        </div>
 
-                            <div className='addMovieItem' >
-                                <label>Genre</label>
-                                <TextField
-                                    name='genre'
-                                    variant='outlined'
-                                    fullWidth
-                                    value={updatedMovie.genre}
-                                    onChange={handleChange}
-                                />
-                            </div>
+                        <div className={classes.addMovieItem} >
+                            <Typography variant='body1'>Video</Typography>
+                            <TextField
+                                name='video'
+                                variant='outlined'
+                                fullWidth
+                                className={classes.textField}
+                                value={updatedMovie.video}
+                                onChange={handleChange}
+                            />
+                        </div>
 
-                            <div className='addMovieItem' >
-                                <label>Video</label>
-                                <TextField
-                                    name='video'
-                                    variant='outlined'
-                                    fullWidth
-                                    value={updatedMovie.video}
-                                    onChange={handleChange}
-                                />
-                            </div>
-
-                            <Button
-                                variant='contained'
-                                color='primary'
-                                className='button'
-                                onClick={handleSubmit}
-                                style={{ marginLeft: 20, marginBottom: 20 }}
-                            >
-                                Submit
-                            </Button>
-                        </form>
-                    </Paper>
-                </Paper>
+                        <Button
+                            variant='contained'
+                            className={classes.button}
+                            onClick={handleSubmit}
+                        >
+                            Submit
+                        </Button>
+                    </form>
+                </Card>
             </Grid>
         </Grid>
     );

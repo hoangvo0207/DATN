@@ -32,7 +32,7 @@ const useStyles = makeStyles(() => ({
     borderRadius: 10
   },
   cardDetail: {
-    display: 'flex',
+    display: 'block',
   },
   cardContent: {
     flex: '1 0 auto',
@@ -57,7 +57,8 @@ const useStyles = makeStyles(() => ({
     borderRadius: 10,
     backgroundColor: '#b96a59',
     width: 150,
-    height: 50
+    height: 50,
+    color: 'white'
   }
 }));
 
@@ -175,7 +176,6 @@ const User = () => {
 
             <Button
               variant='contained'
-              color='primary'
               className={classes.button}
               onClick={handleSubmit}
             >
