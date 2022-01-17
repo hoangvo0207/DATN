@@ -33,7 +33,7 @@ const useStyles = makeStyles(() => ({
   },
   button: {
     borderRadius: 10,
-    backgroundColor: '#b96a59',
+    backgroundColor: '#743a36',
     width: 150,
     height: 50,
     color: 'white',

@@ -10,6 +10,8 @@ import Movie from './pages/movie/Movie';
 import MovieList from './pages/movieList/MovieList';
 import NewList from './pages/newList/NewList';
 import NewMovie from './pages/newMovie/NewMovie';
+import Recommend from './pages/recommend/Recommend';
+import RecommendList from './pages/recommend/RecommendList';
 import User from './pages/user/User';
 import UserList from './pages/userList/UserList';
 
@@ -62,6 +64,12 @@ const App = () => {
             </Route>
             <Route path='/newList'>
               <NewList />
+            </Route>
+            <Route exact path='/recommends'>
+              <RecommendList />
+            </Route>
+            <Route path='/recommends/:recommendId'>
+              <Recommend />
             </Route>
           </React.Fragment>
         ) : <Redirect to='/login' />}

@@ -46,6 +46,14 @@ const useStyles = makeStyles(() => ({
   button: {
     margin: '10px 0px 20px 20px',
     borderRadius: 10,
+    backgroundColor: '#743a36',
+    width: 150,
+    height: 50,
+    color: 'white'
+  },
+  cancel: {
+    margin: '10px 0px 20px 20px',
+    borderRadius: 10,
     backgroundColor: '#b96a59',
     width: 150,
     height: 50,
@@ -66,18 +74,22 @@ const NewMovie = () => {
   const handleChange = (e) => {
     const value = e.target.value;
     setMovie({ ...movie, [e.target.name]: value });
-  }
+  };
 
   const handleSeries = (e) => {
     const value = e.target.value;
     setSeries(value);
-  }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     createMovie(movie, dispatch);
     history.push('/movies');
-  }
+  };
+
+  const handleCancel = () => {
+    history.push('/movies');
+  };
 
   return (
     <Grid container spacing={3} className={classes.newMovie}>
@@ -221,6 +233,14 @@ const NewMovie = () => {
               onClick={handleSubmit}
             >
               Submit
+            </Button>
+
+            <Button
+              variant='contained'
+              className={classes.cancel}
+              onClick={handleCancel}
+            >
+              Cancel
             </Button>
           </form>
         </Paper>

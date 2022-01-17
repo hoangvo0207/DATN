@@ -55,10 +55,18 @@ const useStyles = makeStyles(() => ({
   button: {
     margin: '10px 0px 20px 20px',
     borderRadius: 10,
-    backgroundColor: '#b96a59',
+    backgroundColor: '#743a36',
     width: 150,
     height: 50,
     color: 'white'
+  },
+  cancel: {
+      margin: '10px 0px 20px 20px',
+      borderRadius: 10,
+      backgroundColor: '#b96a59',
+      width: 150,
+      height: 50,
+      color: 'white'
   }
 }));
 
@@ -89,6 +97,10 @@ const User = () => {
       ...updatedUser,
       [e.target.name]: e.target.value
     })
+    history.push('/users');
+  }
+
+  const handleCancel = () => {
     history.push('/users');
   }
 
@@ -180,6 +192,14 @@ const User = () => {
               onClick={handleSubmit}
             >
               Submit
+            </Button>
+
+            <Button
+              variant='contained'
+              className={classes.cancel}
+              onClick={handleCancel}
+            >
+              Cancel
             </Button>
           </form>
         </Card>

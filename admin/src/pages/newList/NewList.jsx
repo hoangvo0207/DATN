@@ -56,6 +56,14 @@ const useStyles = makeStyles(() => ({
     button: {
         margin: '10px 0px 20px 20px',
         borderRadius: 10,
+        backgroundColor: '#743a36',
+        width: 150,
+        height: 50,
+        color: 'white'
+    },
+    cancel: {
+        margin: '10px 0px 20px 20px',
+        borderRadius: 10,
         backgroundColor: '#b96a59',
         width: 150,
         height: 50,
@@ -95,7 +103,7 @@ const NewList = () => {
                     ? theme.typography.fontWeightRegular
                     : theme.typography.fontWeightMedium
         }
-    }
+    };
 
     useEffect(() => {
         getMovies(dispatchMovie);
@@ -105,19 +113,23 @@ const NewList = () => {
         const value = e.target.value;
         setList({ ...list, [e.target.name]: value });
         setType(value);
-    }
+    };
 
     const handleSelect = (e) => {
         let value = e.target.value;
         setList({ ...list, [e.target.name]: value });
         setMoviesSelect(value);
-    }
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
         createList(list, dispatch);
         history.push('/lists');
-    }
+    };
+
+    const handleCancel = () => {
+        history.push('/lists');
+    };
 
     return (
         <Grid container spacing={3} className={classes.newList}>
@@ -199,6 +211,14 @@ const NewList = () => {
                             onClick={handleSubmit}
                         >
                             Submit
+                        </Button>
+
+                        <Button
+                            variant='contained'
+                            className={classes.cancel}
+                            onClick={handleCancel}
+                        >
+                            Cancel
                         </Button>
                     </form>
                 </Paper>

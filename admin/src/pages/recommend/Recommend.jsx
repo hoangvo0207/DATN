@@ -6,22 +6,21 @@ import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
-import { updateList } from '../../contexts/listContext/apiCall';
-import { ListContext } from '../../contexts/listContext/ListContext';
+import { RecommendContext } from '../../contexts/recommendContext/RecommendContext';
 
 const useStyles = makeStyles(() => ({
-    listItem: {
+    movieItem: {
         flex: 4,
         padding: 20
     },
-    listTitle: {
+    movieTitle: {
         alignItems: 'center',
         justifyContent: 'center',
         display: 'flex'
     },
-    addListItem: {
+    addMovieItem: {
         display: 'flex',
         flexDirection: 'column',
         padding: 20
@@ -52,14 +51,6 @@ const useStyles = makeStyles(() => ({
         backgroundColor: 'white',
         borderRadius: 10
     },
-    button: {
-        margin: '10px 0px 20px 20px',
-        borderRadius: 10,
-        backgroundColor: '#743a36',
-        width: 150,
-        height: 50,
-        color: 'white'
-    },
     cancel: {
         margin: '10px 0px 20px 20px',
         borderRadius: 10,
@@ -70,66 +61,40 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
-const ListItem = () => {
-    const { list, dispatch } = useContext(ListContext);
-
-    const [updatedList, setUpdatedList] = useState(list);
+const Recommend = () => {
+    const { recommend } = useContext(RecommendContext);
 
     const history = useHistory();
 
     const classes = useStyles();
 
-    useEffect(() => {
-        setUpdatedList(list);
-    }, [list]);
-
-    const handleChange = (e) => {
-        setUpdatedList({
-            ...updatedList,
-            [e.target.name]: e.target.value
-        })
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        updateList(updatedList, dispatch);
-        setUpdatedList({
-            ...updatedList,
-            [e.target.name]: e.target.value
-        })
-        history.push('/lists');
-    };
-
     const handleCancel = () => {
-        history.push('/lists');
-    };
+        history.push('/recommends');
+    }
 
     return (
-        <Grid container spacing={3} className={classes.listItem}>
+        <Grid container spacing={3} className={classes.movieItem}>
             <Grid item xs={12}>
-                <Typography variant='h4' className={classes.listTitle}>
+                <Typography variant='h4' className={classes.movieTitle}>
                     Update List
                 </Typography>
 
-                <Card elevation={10} className={classes.cardRoot}>
+                <Card className={classes.cardRoot}>
                     <CardMedia
                         className={classes.media}
-                        image='https://images.unsplash.com/photo-1521714161819-15534968fc5f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80'
+                        image={recommend.image}
                         title='movie-image'
                     />
                     <div className={classes.cardDetail}>
-                        <CardContent className={classes.content}>
+                        <CardContent className={classes.cardContent}>
                             <Typography component='h5' variant='h5'>
-                                {updatedList.title}
+                                {recommend.title}
                             </Typography>
                             <Typography variant='subtitle1' color='textSecondary'>
-                                Id: {updatedList._id}
+                                Id: {recommend._id}
                             </Typography>
                             <Typography variant='subtitle1' color='textSecondary'>
-                                Type: {updatedList.type}
-                            </Typography>
-                            <Typography variant='subtitle1' color='textSecondary'>
-                                Genre: {updatedList.genre}
+                                Score: {recommend.score}
                             </Typography>
                         </CardContent>
                     </div>
@@ -137,62 +102,54 @@ const ListItem = () => {
 
                 <Card elevation={10} className={classes.cardForm}>
                     <form>
-                        <div className={classes.addListItem} >
+                        <div className={classes.addMovieItem}>
                             <Typography variant='body1'>Title</Typography>
                             <TextField
                                 name='title'
                                 variant='outlined'
                                 fullWidth
+                                disabled
                                 className={classes.textField}
-                                value={updatedList.title}
-                                onChange={handleChange}
+                                value={recommend.title}
                             />
                         </div>
 
-                        <div className={classes.addListItem} >
-                            <Typography variant='body1'>Type</Typography>
+                        <div className={classes.addMovieItem} >
+                            <Typography variant='body1'>Score</Typography>
                             <TextField
-                                name='type'
+                                name='score'
                                 variant='outlined'
                                 fullWidth
+                                disabled
                                 className={classes.textField}
-                                value={updatedList.type}
-                                onChange={handleChange}
+                                value={recommend.score}
                             />
                         </div>
 
-                        <div className={classes.addListItem} >
-                            <Typography variant='body1'>Genre</Typography>
+                        <div className={classes.addMovieItem} >
+                            <Typography variant='body1'>Image</Typography>
                             <TextField
-                                name='genre'
+                                name='image'
                                 variant='outlined'
                                 fullWidth
+                                disabled
                                 className={classes.textField}
-                                value={updatedList.genre}
-                                onChange={handleChange}
+                                value={recommend.image}
                             />
                         </div>
-
-                        <Button
-                            variant='contained'
-                            className={classes.button}
-                            onClick={handleSubmit}
-                        >
-                            Submit
-                        </Button>
 
                         <Button
                             variant='contained'
                             className={classes.cancel}
                             onClick={handleCancel}
                         >
-                            Cancel
+                            Back
                         </Button>
                     </form>
                 </Card>
             </Grid>
-        </Grid >
+        </Grid>
     );
 };
 
-export default ListItem
+export default Recommend;

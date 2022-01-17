@@ -55,6 +55,14 @@ const useStyles = makeStyles(() => ({
     button: {
         margin: '10px 0px 20px 20px',
         borderRadius: 10,
+        backgroundColor: '#743a36',
+        width: 150,
+        height: 50,
+        color: 'white'
+    },
+    cancel: {
+        margin: '10px 0px 20px 20px',
+        borderRadius: 10,
         backgroundColor: '#b96a59',
         width: 150,
         height: 50,
@@ -76,7 +84,7 @@ const Movie = () => {
             ...updatedMovie,
             [e.target.name]: e.target.value
         })
-    }
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -86,13 +94,17 @@ const Movie = () => {
             [e.target.name]: e.target.value
         })
         history.push('/movies');
-    }
+    };
+
+    const handleCancel = () => {
+        history.push('/movies');
+    };
 
     return (
         <Grid container spacing={3} className={classes.movieItem}>
             <Grid item xs={12}>
                 <Typography variant='h4' className={classes.movieTitle}>
-                    Update List
+                    Update Movie
                 </Typography>
 
                 <Card className={classes.cardRoot}>
@@ -106,16 +118,16 @@ const Movie = () => {
                             <Typography component='h5' variant='h5'>
                                 {updatedMovie.title}
                             </Typography>
-                            <Typography component='subtitle1' variant='subtitle1'>
+                            <Typography variant='subtitle1' color='textSecondary'>
                                 Id: {updatedMovie._id}
                             </Typography>
-                            <Typography component='subtitle1' variant='subtitle1'>
+                            <Typography variant='subtitle1' color='textSecondary'>
                                 Genre: {updatedMovie.genre}
                             </Typography>
-                            <Typography component='subtitle1' variant='subtitle1'>
+                            <Typography variant='subtitle1' color='textSecondary'>
                                 Year: {updatedMovie.year}
                             </Typography>
-                            <Typography component='subtitle1' variant='subtitle1'>
+                            <Typography variant='subtitle1' color='textSecondary'>
                                 Limit: {updatedMovie.limit}
                             </Typography>
                         </CardContent>
@@ -249,6 +261,14 @@ const Movie = () => {
                             onClick={handleSubmit}
                         >
                             Submit
+                        </Button>
+
+                        <Button
+                            variant='contained'
+                            className={classes.cancel}
+                            onClick={handleCancel}
+                        >
+                            Cancel
                         </Button>
                     </form>
                 </Card>
