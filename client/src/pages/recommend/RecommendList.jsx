@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { apiUrl } from '../../constants/constant';
 import Featured from '../home/components/featured/Featured';
 import Navbar from '../home/components/navbar/Navbar';
-import RecommendMovie from './RecommendMovie';
+import RecommendItem from './RecommendItem';
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -20,7 +20,7 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
-const Recommend = () => {
+const RecommendList = () => {
     const [recommends, setRecommends] = useState([]);
 
     const classes = useStyles();
@@ -52,7 +52,7 @@ const Recommend = () => {
                     <Grid container spacing={3}>
                         {recommends.map((recommend) => (
                             <Grid item xs={2}>
-                                <RecommendMovie recommend={recommend} />
+                                <RecommendItem recommend={recommend} />
                             </Grid>
                         )
                         )}
@@ -64,4 +64,4 @@ const Recommend = () => {
     );
 };
 
-export default Recommend;
+export default RecommendList;
