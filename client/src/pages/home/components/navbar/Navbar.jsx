@@ -95,7 +95,10 @@ const Navbar = () => {
                     <Link to='/movies' className={classes.link}>
                         <span className='span'>Movies</span>
                     </Link>
-                    <Link to='/recommend' className={classes.link}>
+                    <Link to='/feedbacks' className={classes.link}>
+                        <span className='span'>Feedbacks</span>
+                    </Link>
+                    <Link to='/recommends' className={classes.link}>
                         <span className='span'>New and Popular</span>
                     </Link>
                 </div>

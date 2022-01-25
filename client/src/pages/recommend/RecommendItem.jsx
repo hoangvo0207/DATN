@@ -29,7 +29,7 @@ const RecommendItem = (props) => {
     const classes = useStyles();
 
     return (
-        <Link className={classes.link} to={{ pathname: '/recommend/detail', recommend: recommend }}>
+        <Link className={classes.link} to={{ pathname: '/recommends/detail', recommend: recommend }}>
             <Card elevation={16} className={classes.root}>
                 <CardActionArea>
                     <CardMedia

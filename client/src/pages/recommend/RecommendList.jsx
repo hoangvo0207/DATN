@@ -6,13 +6,14 @@ import { apiUrl } from '../../constants/constant';
 import Featured from '../home/components/featured/Featured';
 import Navbar from '../home/components/navbar/Navbar';
 import RecommendItem from './RecommendItem';
+import SearchFeature from './SearchFeature';
 
 const useStyles = makeStyles(() => ({
     root: {
         flexGrow: 1,
         marginLeft: 20,
         marginRight: 20,
-        marginTop: 20,
+        marginTop: 20
     },
     recommend: {
         backgroundColor: '#00202e',
@@ -48,6 +49,7 @@ const RecommendList = () => {
             <div className={classes.recommend}>
                 <Navbar />
                 <Featured />
+                <SearchFeature />
                 <div className={classes.root}>
                     <Grid container spacing={3}>
                         {recommends.map((recommend) => (
@@ -56,7 +58,6 @@ const RecommendList = () => {
                             </Grid>
                         )
                         )}
-
                     </Grid>
                 </div>
             </div>

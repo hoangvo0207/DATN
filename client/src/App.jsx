@@ -3,6 +3,9 @@ import {
     BrowserRouter as Router, Redirect, Route, Switch
 } from 'react-router-dom';
 import { AuthContext } from './authContext/AuthContext';
+import FeedbackItemDetail from './pages/feedback/FeedbackItemDetail';
+import FeedbackList from './pages/feedback/FeedbackList';
+import NewFeedback from './pages/feedback/NewFeedback';
 import ListItemDetail from './pages/home/components/list/ListItemDetail';
 import Home from './pages/home/Home';
 import Login from './pages/login/Login';
@@ -39,11 +42,23 @@ const App = () => {
                             <Home type='series' />
                         </Route>
 
-                        <Route exact path='/recommend'>
+                        <Route exact path='/feedbacks'>
+                            <FeedbackList />
+                        </Route>
+
+                        <Route exact path='/feedbacks/detail'>
+                            <FeedbackItemDetail />
+                        </Route>
+
+                        <Route path='/feedbacks/new'>
+                            <NewFeedback />
+                        </Route>
+
+                        <Route exact path='/recommends'>
                             <RecommendList />
                         </Route>
 
-                        <Route exact path='/recommend/detail'>
+                        <Route exact path='/recommends/detail'>
                             <RecommendItemDetail />
                         </Route>
 

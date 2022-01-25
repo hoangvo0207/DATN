@@ -6,6 +6,7 @@ import userRoute from './routes/users.js';
 import movieRoute from './routes/movies.js';
 import listRoute from './routes/lists.js';
 import recommendRoute from './routes/recommends.js';
+import feedbackRoute from './routes/feedbacks.js';
 import cors from 'cors';
 // import { createRequire } from 'module';
 // import formatData from './training/formatData.js';
@@ -42,6 +43,7 @@ app.use('/api/users', userRoute);
 app.use('/api/movies', movieRoute);
 app.use('/api/lists', listRoute);
 app.use('/api/recommends', recommendRoute);
+app.use('/api/feedbacks', feedbackRoute);
 
 app.listen(8000, () => {
     console.log('Backend server is running');
