@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import Topbar from './components/topbar/Topbar';
 import { AuthContext } from './contexts/authContext/AuthContext';
+import FeedbackItem from './pages/feedback/FeedbackItem';
+import Feedbacks from './pages/feedback/Feedbacks';
 import Home from './pages/home/Home';
 import List from './pages/list/List';
 import ListItem from './pages/listItem/ListItem';
@@ -70,6 +72,12 @@ const App = () => {
             </Route>
             <Route path='/recommends/:recommendId'>
               <Recommend />
+            </Route>
+            <Route exact path='/feedbacks'>
+              <Feedbacks />
+            </Route>
+            <Route exact path='/feedbacks/:feedbackId'>
+              <FeedbackItem />
             </Route>
           </React.Fragment>
         ) : <Redirect to='/login' />}

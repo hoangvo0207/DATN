@@ -100,6 +100,9 @@ const Topbar = () => {
           <Link to='/movies' className={classes.link}>
             <span className='span'>Movies</span>
           </Link>
+          <Link to='/feedbacks' className={classes.link}>
+            <span className='span'>Feedbacks</span>
+          </Link>
           <Link to='/recommends' className={classes.link}>
             <span className='span'>Recommends</span>
           </Link>
