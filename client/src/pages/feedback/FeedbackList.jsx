@@ -3,8 +3,8 @@ import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import React, { useContext, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { deleteFeedback, getFeedbacks } from '../../feedbackContext/apiCall';
-import { FeedbackContext } from '../../feedbackContext/FeedbackContext';
+import { deleteFeedback, getFeedbacks } from '../../contexts/feedbackContext/apiCall';
+import { FeedbackContext } from '../../contexts/feedbackContext/FeedbackContext';
 import Navbar from '../home/components/navbar/Navbar.jsx';
 import FeedbackItem from './FeedbackItem';
 

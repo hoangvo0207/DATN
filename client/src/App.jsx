@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import {
     BrowserRouter as Router, Redirect, Route, Switch
 } from 'react-router-dom';
-import { AuthContext } from './authContext/AuthContext';
+import { AuthContext } from './contexts/authContext/AuthContext';
 import FeedbackItemDetail from './pages/feedback/FeedbackItemDetail';
 import FeedbackList from './pages/feedback/FeedbackList';
 import NewFeedback from './pages/feedback/NewFeedback';
@@ -12,6 +12,7 @@ import Login from './pages/login/Login';
 import RecommendItemDetail from './pages/recommend/RecommendItemDetail';
 import RecommendList from './pages/recommend/RecommendList';
 import Register from './pages/register/Register';
+import UserInfo from './pages/user/UserInfo';
 import Watch from './pages/watch/Watch';
 
 const App = () => {
@@ -34,6 +35,9 @@ const App = () => {
 
                 {user ? (
                     <React.Fragment>
+                        <Route path='/user'>
+                            <UserInfo />
+                        </Route>
                         <Route exact path='/movies'>
                             <Home type='movies' />
                         </Route>

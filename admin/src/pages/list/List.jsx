@@ -29,7 +29,8 @@ const useStyles = makeStyles(() => ({
     width: 150,
     height: 50,
     color: 'white',
-    marginBottom: 10
+    marginBottom: 10,
+    marginLeft: 10
   }
 }));
 
@@ -68,10 +69,9 @@ const List = () => {
             <IconButton onClick={handleFindList.bind(this, params.row._id)}>
               <EditIcon style={{ color: green[500] }} />
             </IconButton>
-            <DeleteOutline
-              className={classes.listDelete}
-              onClick={() => handleDelete(params.row._id)}
-            />
+            <IconButton onClick={() => handleDelete(params.row._id)}>
+              <DeleteOutline className={classes.listDelete} />
+            </IconButton>
           </React.Fragment>
         );
       },

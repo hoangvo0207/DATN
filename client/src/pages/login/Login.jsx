@@ -4,8 +4,8 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { login } from '../../authContext/apiCall';
-import { AuthContext } from '../../authContext/AuthContext';
+import { login } from '../../contexts/authContext/apiCall';
+import { AuthContext } from '../../contexts/authContext/AuthContext';
 import logo from '../login/logo.PNG';
 
 const useStyles = makeStyles(() => ({

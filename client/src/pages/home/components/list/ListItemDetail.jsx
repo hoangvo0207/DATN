@@ -6,6 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import LocalOfferIcon from '@material-ui/icons/LocalOffer';
+import Rating from '@material-ui/lab/Rating';
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Navbar from '../navbar/Navbar';
@@ -42,7 +43,8 @@ const useStyles = makeStyles(() => ({
         color: 'white'
     },
     link: {
-        textDecoration: 'none'
+        textDecoration: 'none',
+        color: '#0000008A'
     },
     text: {
         width: 520,
@@ -88,6 +90,13 @@ const ListItemDetail = () => {
                                 <Button className={classes.play} variant='contained'>
                                     Play
                                 </Button>
+                                Rating:
+                                <Rating
+                                    value={7}
+                                    size='small'
+                                    max={10}
+                                    readOnly
+                                />
                             </Link>
                             <div>
                                 <Typography variant='subtitle1' color='textSecondary'>
@@ -112,9 +121,11 @@ const ListItemDetail = () => {
                                     variant='outlined'
                                     rows={10}
                                     multiline
-                                    disabled
                                     className={classes.text}
                                     defaultValue={movie.desc}
+                                    InputProps={{
+                                        readOnly: true,
+                                    }}
                                 />
                             </div>
                         </Grid>

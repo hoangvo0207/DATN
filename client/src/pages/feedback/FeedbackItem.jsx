@@ -13,7 +13,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import Rating from '@material-ui/lab/Rating';
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { AuthContext } from '../../authContext/AuthContext';
+import { AuthContext } from '../../contexts/authContext/AuthContext';
 
 const useStyles = makeStyles(() => ({
     root: {

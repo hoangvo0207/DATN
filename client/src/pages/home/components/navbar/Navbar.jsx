@@ -1,10 +1,11 @@
-import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import Settings from '@material-ui/icons/Settings';
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { logoutRequest } from '../../../../authContext/AuthAction';
-import { AuthContext } from '../../../../authContext/AuthContext';
+import { logoutRequest } from '../../../../contexts/authContext/AuthAction';
+import { AuthContext } from '../../../../contexts/authContext/AuthContext';
 import facebook_ava from '../navbar/facebook_ava.jpg';
 import logo from '../navbar/logo.PNG';
 
@@ -63,6 +64,11 @@ const useStyles = makeStyles(() => ({
     icon: {
         margin: '0px 15px',
         cursor: 'pointer'
+    },
+    account: {
+        marginLeft: -5,
+        marginTop: 5,
+        cursor: 'pointer'
     }
 }));
 
@@ -111,6 +117,9 @@ const Navbar = () => {
                         alt='avatar'
                     />
                     <ExitToAppIcon className={classes.icon} onClick={() => dispatch(logoutRequest())} />
+                    <Link to='/user' className={classes.link}>
+                        <Settings className={classes.account} />
+                    </Link>
                 </div>
             </div>
         </div>

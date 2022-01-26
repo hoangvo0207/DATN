@@ -37,7 +37,8 @@ const useStyles = makeStyles(() => ({
     width: 150,
     height: 50,
     color: 'white',
-    marginBottom: 10
+    marginBottom: 10,
+    marginLeft: 10
   }
 }));
 
@@ -81,7 +82,7 @@ const MovieList = () => {
     { field: 'limit', headerName: 'Limit', width: 150 },
     {
       field: 'action',
-      headerName: 'Action',
+      headerName: 'Actions',
       width: 150,
       renderCell: (params) => {
         return (
@@ -89,10 +90,9 @@ const MovieList = () => {
             <IconButton onClick={handleFindMovie.bind(this, params.row._id)}>
               <EditIcon style={{ color: green[500] }} />
             </IconButton>
-            <DeleteOutline
-              className={classes.movieListDelete}
-              onClick={() => handleDelete(params.row._id)}
-            />
+            <IconButton onClick={() => handleDelete(params.row._id)}>
+              <DeleteOutline className={classes.movieListDelete} />
+            </IconButton>
           </React.Fragment>
         );
       },

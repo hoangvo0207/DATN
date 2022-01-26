@@ -16,8 +16,7 @@ const useStyles = makeStyles(() => ({
     position: 'fixed',
     top: 0,
     zIndex: 999,
-    backgroundColor: '#310A0B',
-    borderRadius: 10
+    backgroundColor: '#310A0B'
   },
   nav: {
     width: '100%',
@@ -26,8 +25,7 @@ const useStyles = makeStyles(() => ({
     position: 'fixed',
     top: 0,
     zIndex: 999,
-    backgroundColor: '#491B1D',
-    borderRadius: 10
+    backgroundColor: '#491B1D'
   },
   container: {
     padding: '0px 20px',

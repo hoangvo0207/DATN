@@ -75,10 +75,9 @@ const RecommendList = () => {
                         <IconButton onClick={handleFindRecommend.bind(this, params.row._id)}>
                             <EditIcon style={{ color: green[500] }} />
                         </IconButton>
-                        <DeleteOutline
-                            className={classes.movieListDelete}
-                            onClick={() => handleDelete(params.row._id)}
-                        />
+                        <IconButton onClick={() => handleDelete(params.row._id)}>
+                            <DeleteOutline className={classes.movieListDelete} />
+                        </IconButton>
                     </React.Fragment>
                 );
             },

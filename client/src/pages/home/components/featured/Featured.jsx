@@ -9,7 +9,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import LocalOfferIcon from '@material-ui/icons/LocalOffer';
-import StartIcon from '@material-ui/icons/Star';
+import Rating from '@material-ui/lab/Rating';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { apiUrl } from '../../../../constants/constant';
@@ -163,9 +163,12 @@ const Featured = (props) => {
                     </CardContent>
 
                     <div className={classes.controls}>
-                        {
-                            [1, 2, 3, 4, 5].map(() => <StartIcon />)
-                        }
+                        <Rating
+                            value={8}
+                            size='small'
+                            max={10}
+                            readOnly
+                        />
                         <LocalOfferIcon className={classes.icon} /> Drama
                         <AccessTimeIcon className={classes.icon} /> 2021/12/08
                     </div>

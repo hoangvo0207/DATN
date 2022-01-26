@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { apiUrl } from '../constants/constant';
+import { apiUrl } from '../../constants/constant';
 import { createFeedbackFailure, createFeedbackRequest, createFeedbackSuccess, deleteFeedbackFailure, deleteFeedbackRequest, deleteFeedbackSuccess, getFeedbacksFailure, getFeedbacksRequest, getFeedbacksSuccess, updateFeedbackFailure, updateFeedbackRequest, updateFeedbackSuccess } from './FeedbackAction';
 
 export const getFeedbacks = async (dispatch) => {

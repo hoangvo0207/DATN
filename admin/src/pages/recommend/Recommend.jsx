@@ -108,9 +108,11 @@ const Recommend = () => {
                                 name='title'
                                 variant='outlined'
                                 fullWidth
-                                disabled
                                 className={classes.textField}
                                 value={recommend.title}
+                                InputProps={{
+                                    readOnly: true,
+                                }}
                             />
                         </div>
 
@@ -120,9 +122,11 @@ const Recommend = () => {
                                 name='score'
                                 variant='outlined'
                                 fullWidth
-                                disabled
                                 className={classes.textField}
                                 value={recommend.score}
+                                InputProps={{
+                                    readOnly: true,
+                                }}
                             />
                         </div>
 
@@ -132,9 +136,11 @@ const Recommend = () => {
                                 name='image'
                                 variant='outlined'
                                 fullWidth
-                                disabled
                                 className={classes.textField}
                                 value={recommend.image}
+                                InputProps={{
+                                    readOnly: true,
+                                }}
                             />
                         </div>
 

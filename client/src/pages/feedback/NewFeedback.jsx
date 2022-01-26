@@ -6,9 +6,9 @@ import Typography from '@material-ui/core/Typography';
 import Rating from '@material-ui/lab/Rating';
 import { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { AuthContext } from '../../authContext/AuthContext';
-import { createFeedback } from '../../feedbackContext/apiCall';
-import { FeedbackContext } from '../../feedbackContext/FeedbackContext';
+import { AuthContext } from '../../contexts/authContext/AuthContext';
+import { createFeedback } from '../../contexts/feedbackContext/apiCall';
+import { FeedbackContext } from '../../contexts/feedbackContext/FeedbackContext';
 import Navbar from '../home/components/navbar/Navbar';
 
 const useStyles = makeStyles(() => ({

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { apiUrl } from '../constants/constant';
+import { apiUrl } from '../../constants/constant';
 import { loginFailure, loginRequest, loginSuccess } from './AuthAction';
 
 export const login = async (user, dispatch) => {

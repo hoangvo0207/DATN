@@ -1,9 +1,8 @@
-import { green } from '@material-ui/core/colors';
 import IconButton from '@material-ui/core/IconButton';
 import { makeStyles } from '@material-ui/core/styles';
 import { DataGrid } from '@material-ui/data-grid';
 import DeleteOutline from '@material-ui/icons/DeleteOutline';
-import EditIcon from '@material-ui/icons/Edit';
+import VisibilityIcon from '@material-ui/icons/Visibility';
 import React, { useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { deleteUser, getUsers } from '../../contexts/userContext/apiCall';
@@ -71,12 +70,11 @@ const UserList = () => {
         return (
           <React.Fragment>
             <IconButton onClick={handleFindUser.bind(this, params.row._id)}>
-              <EditIcon style={{ color: green[500] }} />
+              <VisibilityIcon />
             </IconButton>
-            <DeleteOutline
-              className={classes.userDelete}
-              onClick={() => handleDelete(params.row._id)}
-            />
+            <IconButton onClick={() => handleDelete(params.row._id)}>
+              <DeleteOutline className={classes.userDelete} />
+            </IconButton>
           </React.Fragment>
         );
       },
