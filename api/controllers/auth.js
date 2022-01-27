@@ -20,12 +20,12 @@ export const register = async (req, res) => {
 export const login = async (req, res) => {
     try {
         const user = await User.findOne({ email: req.body.email });
-        !user && res.status(401).json('Incorrect username or password');
+        !user && res.status(401).json('Incorrect email address!');
 
         const bytes = CryptoJS.AES.decrypt(user.password, process.env.SECRET_KEY);
         const originalPassword = bytes.toString(CryptoJS.enc.Utf8);
 
-        originalPassword !== req.body.password && res.status(401).json('Incorrect username or password');
+        originalPassword !== req.body.password && res.status(401).json('Incorrect password!');
 
         const accessToken = jwt.sign(
             { id: user._id, isAdmin: user.isAdmin },

@@ -70,7 +70,7 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const { dispatch } = useContext(AuthContext);
+    const { error, dispatch } = useContext(AuthContext);
 
     const classes = useStyles();
 
@@ -92,21 +92,45 @@ const Login = () => {
             <div className={classes.container}>
                 <form className={classes.form}>
                     <Typography align='center' variant='h3'>Sign In</Typography>
-                    <TextField
-                        name='email'
-                        variant='outlined'
-                        className={classes.input}
-                        placeholder='Email or Phone Number'
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                    <TextField
-                        name='password'
-                        type='password'
-                        variant='outlined'
-                        className={classes.input}
-                        placeholder='Password'
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
+                    {
+                        error ?
+                            <TextField
+                                error
+                                name='email'
+                                variant='outlined'
+                                placeholder='Email or Phone Number'
+                                helperText='Incorrect Email Address or Password'
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+                            : <TextField
+                                name='email'
+                                variant='outlined'
+                                className={classes.input}
+                                placeholder='Email or Phone Number'
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+
+                    }
+                    {
+                        error ?
+                            <TextField
+                                error
+                                name='password'
+                                type='password'
+                                variant='outlined'
+                                placeholder='Password'
+                                helperText='Incorrect Email Address or Password'
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                            : <TextField
+                                name='password'
+                                type='password'
+                                variant='outlined'
+                                className={classes.input}
+                                placeholder='Password'
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                    }
                     <Button
                         className={classes.button}
                         variant='contained'
