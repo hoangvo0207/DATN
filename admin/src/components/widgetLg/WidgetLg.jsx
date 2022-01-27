@@ -12,8 +12,9 @@ const useStyles = makeStyles(() => ({
 
   },
   moviePoster: {
-    width: 920,
+    width: '90%',
     height: 650,
+    marginLeft: '5%',
     borderRadius: 10
   }
 }));

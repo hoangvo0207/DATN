@@ -1,3 +1,4 @@
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
@@ -18,11 +19,22 @@ const useStyles = makeStyles(() => ({
     recommend: {
         backgroundColor: '#00202e',
         overflow: 'hidden'
+    },
+    loading: {
+        backgroundColor: '#00202e',
+        width: '100%',
+        height: 900
+    },
+    progress: {
+        marginLeft: '50%',
+        marginTop: 32,
+        color: 'white'
     }
 }));
 
 const RecommendList = () => {
     const [recommends, setRecommends] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     const classes = useStyles();
 
@@ -37,6 +49,7 @@ const RecommendList = () => {
                 }
                 );
                 setRecommends(response.data);
+                setIsLoading(false);
             } catch (error) {
                 console.log(error);
             }
@@ -52,12 +65,18 @@ const RecommendList = () => {
                 <SearchFeature />
                 <div className={classes.root}>
                     <Grid container spacing={3}>
-                        {recommends.map((recommend) => (
-                            <Grid item xs={2}>
-                                <RecommendItem recommend={recommend} />
-                            </Grid>
-                        )
-                        )}
+                        {
+                            isLoading ?
+                                <div className={classes.loading}>
+                                    <CircularProgress className={classes.progress} />
+                                </div>
+                                :
+                                recommends.map((recommend) => (
+                                    <Grid item xs={2}>
+                                        <RecommendItem recommend={recommend} />
+                                    </Grid>
+                                )
+                                )}
                     </Grid>
                 </div>
             </div>

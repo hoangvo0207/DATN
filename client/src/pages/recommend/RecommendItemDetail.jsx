@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, TextField } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
@@ -6,6 +6,8 @@ import Typography from '@material-ui/core/Typography';
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Navbar from '../home/components/navbar/Navbar';
+import AccessTimeIcon from '@material-ui/icons/AccessTime';
+import Rating from '@material-ui/lab/Rating';
 
 const useStyles = makeStyles(() => ({
     emptyFirst: {
@@ -39,7 +41,8 @@ const useStyles = makeStyles(() => ({
         color: 'white'
     },
     link: {
-        textDecoration: 'none'
+        textDecoration: 'none',
+        color: '#0000008A'
     },
     text: {
         width: 520,
@@ -55,10 +58,10 @@ const useStyles = makeStyles(() => ({
     },
     emptyLast: {
         backgroundColor: '#00202e',
-        height: 70
+        height: 90
     },
     icon: {
-        marginLeft: 50
+        marginLeft: 0
     }
 }));
 
@@ -66,6 +69,8 @@ const RecommendItemDetail = () => {
     const location = useLocation();
     const { recommend } = location || {};
     const classes = useStyles();
+
+    const description = `This movie is recommended based on the popularity of the movies in the near future, will be updated to broadcast on our website soon. The website has a content-based recommendation system with the specific score of this movie being ${recommend.score}`;
 
     return (
         <React.Fragment>
@@ -81,28 +86,35 @@ const RecommendItemDetail = () => {
                             <Typography className={classes.title} variant='h3' color='textSecondary'>
                                 {recommend.title}
                             </Typography>
-                            <Link className={classes.link} to={{ pathname: '/watch', recommend: recommend }}>
+                            <Link className={classes.link}>
                                 <Button className={classes.play} variant='contained'>
                                     Play
                                 </Button>
+                                Rating:
+                                <Rating
+                                    value={7}
+                                    size='small'
+                                    max={10}
+                                    readOnly
+                                />
                             </Link>
                             <div>
                                 <Typography variant='subtitle1' color='textSecondary'>
                                     Score: {recommend.score}
                                 </Typography>
                                 <div className={classes.tags}>
-                                    {/* <AccessTimeIcon className={classes.icon} /> {movie.createdAt} */}
+                                    <AccessTimeIcon className={classes.icon} /> 27/01/2022
                                 </div>
-                                {/* <TextField
-                                    id='outlined-basic'
-                                    label='Description'
+                                <TextField
                                     variant='outlined'
                                     rows={10}
                                     multiline
-                                    disabled
                                     className={classes.text}
-                                    defaultValue={movie.desc}
-                                /> */}
+                                    defaultValue={description}
+                                    InputProps={{
+                                        readOnly: true,
+                                    }}
+                                />
                             </div>
                         </Grid>
                     </Grid>

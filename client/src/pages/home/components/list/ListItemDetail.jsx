@@ -60,7 +60,7 @@ const useStyles = makeStyles(() => ({
     },
     emptyLast: {
         backgroundColor: '#00202e',
-        height: 70
+        height: 90
     },
     icon: {
         marginLeft: 50

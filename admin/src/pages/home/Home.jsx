@@ -8,10 +8,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => ({
   home: {
-    marginTop: 80,
-    backgroundColor: '#310A0B',
-    borderRadius: 10
-    
+    marginTop: 70,
+    backgroundColor: '#310A0B'
   },
   homeWidget: {
     display: 'flex'

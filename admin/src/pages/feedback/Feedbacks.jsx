@@ -1,3 +1,4 @@
+import CircularProgress from '@material-ui/core/CircularProgress';
 import IconButton from '@material-ui/core/IconButton';
 import { makeStyles } from '@material-ui/core/styles';
 import { DataGrid } from '@material-ui/data-grid';
@@ -21,11 +22,16 @@ const useStyles = makeStyles(() => ({
         objectFit: 'cover',
         marginRight: 10,
         marginTop: 20
+    },
+    progress: {
+        marginLeft: '50%',
+        marginTop: '20%',
+        color: '#491B1D'
     }
 }));
 
 const Feedbacks = () => {
-    const { feedbacks, findFeedback, dispatch } = useContext(FeedbackContext);
+    const { feedbacks, findFeedback, isLoading, dispatch } = useContext(FeedbackContext);
 
     const history = useHistory();
 
@@ -90,14 +96,19 @@ const Feedbacks = () => {
 
     return (
         <div className={classes.feedbackList}>
-            <DataGrid
-                rows={feedbacks}
-                disableSelectionOnClick
-                columns={columns}
-                pageSize={8}
-                checkboxSelection
-                getRowId={row => row._id}
-            />
+            {
+                isLoading ?
+                    <CircularProgress className={classes.progress} />
+                    :
+                    <DataGrid
+                        rows={feedbacks}
+                        disableSelectionOnClick
+                        columns={columns}
+                        pageSize={8}
+                        checkboxSelection
+                        getRowId={row => row._id}
+                    />
+            }
         </div>
     );
 };

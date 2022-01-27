@@ -7,10 +7,12 @@ import {
 const useStyles = makeStyles(() => ({
   chart: {
     padding: 20,
+    margin: 'auto',
+    width: '95%',
     borderRadius: 10,
     WebkitBoxShadow: '0px 0px 15px -10px rgba(0, 0, 0, 0.75)',
     boxShadow: '0px 0px 15px -10px rgba(0, 0, 0, 0.75)',
-    backgroundColor: 'white',
+    backgroundColor: 'white'
 
   },
   chartTitle: {

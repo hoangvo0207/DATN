@@ -1,3 +1,4 @@
+import CircularProgress from '@material-ui/core/CircularProgress';
 import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
@@ -11,6 +12,16 @@ const useStyles = makeStyles(() => ({
     home: {
         backgroundColor: '#00202e',
         overflow: 'hidden'
+    },
+    loading: {
+        backgroundColor: '#00202e',
+        width: '100%',
+        height: 900
+    },
+    progress: {
+        marginLeft: '50%',
+        marginTop: 32,
+        color: 'white'
     }
 }));
 
@@ -18,6 +29,7 @@ const Home = (props) => {
     const { type } = props;
     const [lists, setLists] = useState([]);
     const [genre, setGenre] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
 
     const classes = useStyles();
 
@@ -32,6 +44,7 @@ const Home = (props) => {
                 }
                 );
                 setLists(response.data);
+                setIsLoading(false);
             } catch (error) {
                 console.log(error);
             }
@@ -48,9 +61,14 @@ const Home = (props) => {
             <SearchFeature />
 
             {
-                lists.map((list) => (
-                    <List list={list} />
-                ))
+                isLoading ?
+                    <div className={classes.loading}>
+                        <CircularProgress className={classes.progress} />
+                    </div>
+                    :
+                    lists.map((list) => (
+                        <List list={list} isLoading={isLoading} />
+                    ))
             }
         </div>
     );
