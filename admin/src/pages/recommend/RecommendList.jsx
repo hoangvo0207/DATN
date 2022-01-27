@@ -56,11 +56,11 @@ const RecommendList = () => {
     };
 
     const columns = [
-        { field: '_id', headerName: 'ID', width: 300 },
+        { field: '_id', headerName: 'ID', width: 350 },
         {
             field: 'title',
             headerName: 'Movie',
-            width: 250,
+            width: 400,
             renderCell: (params) => {
                 return (
                     <div>
@@ -70,11 +70,11 @@ const RecommendList = () => {
                 );
             },
         },
-        { field: 'score', headerName: 'Score', width: 250 },
+        { field: 'score', headerName: 'Score', width: 300 },
         {
             field: 'action',
             headerName: 'Actions',
-            width: 150,
+            width: 200,
             renderCell: (params) => {
                 return (
                     <React.Fragment>
