@@ -110,7 +110,7 @@ const Navbar = () => {
                 </div>
 
                 <div className={classes.right}>
-                    <Typography variant='h6'>Hi, Hoang!</Typography>
+                    <Typography variant='h6'>Welcome!</Typography>
                     <img
                         className={classes.ava}
                         src={facebook_ava}

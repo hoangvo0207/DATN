@@ -1,1 +1,1 @@
-export const apiUrl = 'http://localhost:8000/api';
+export const apiUrl = 'https://hoang-film-api.herokuapp.com/api';
